@@ -1,0 +1,39 @@
+{
+	"apiVersion": 2,
+	"name": "ai-image/image-generator",
+	"version": "1.0.0",
+	"title": "AI Image",
+	"category": "ai-image",
+	"description": "AI Image Generator using OpenAI API.",
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"keywords": [
+		"openai",
+		"ai",
+		"image",
+		"generator",
+		"chatbot",
+		"chatgpt3",
+		"chatgpt"
+	],
+	"attributes": {
+		"id": {
+			"type": "string"
+		},
+		"image": {
+			"type": "string"
+		}
+	},
+	"example": {
+		"attributes": {
+			"id": "ai-image-1",
+			"image": ""
+		}
+	},
+	"textdomain": "ai-image",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

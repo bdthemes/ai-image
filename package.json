@@ -1,0 +1,34 @@
+{
+	"name": "ai-image",
+	"version": "1.0.0",
+	"description": "",
+	"main": "build/blocks/index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start"
+	},
+	"prettier": "@wordpress/prettier-config",
+	"stylelint": {
+		"extends": "@wordpress/stylelint-config/scss"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@wordpress/api-fetch": "^6.29.0",
+		"@wordpress/eslint-plugin": "^14.0.0",
+		"@wordpress/prettier-config": "^2.10.0",
+		"@wordpress/scripts": "^25.4.0",
+		"@wordpress/stylelint-config": "^21.10.0",
+		"dotenv": "^16.0.3",
+		"dotenv-webpack": "^8.0.1",
+		"openai": "^3.2.1"
+	},
+	"devDependencies": {
+		"eslint-config-prettier": "^8.6.0"
+	}
+}
