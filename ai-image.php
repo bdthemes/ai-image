@@ -48,8 +48,8 @@ final class BDTHEMES_AI_IMAGE {
 	 * Load Plugin Files
 	 */
 	public function load_files() {
+		require_once __DIR__ . '/admin/api.php';
 		if(is_admin()){
-			require_once __DIR__ . '/admin/api.php';
 			require_once __DIR__ . '/admin/settings.php';
 
 		}
