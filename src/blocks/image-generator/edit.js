@@ -1,8 +1,6 @@
-/* eslint-disable no-shadow */
-/* eslint-disable @wordpress/no-unsafe-wp-apis */
-/* eslint-disable react/jsx-key */
-/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
+/* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable @wordpress/no-unsafe-wp-apis */
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
@@ -35,6 +33,8 @@ export default function Edit({ attributes, clientId }) {
 	const [size, setSize] = useState('512x512');
 	const { replaceBlock } = useDispatch(blockEditorStore);
 	const [errorMessage, setErrorMessage] = useState('');
+
+
 
 	const { mediaUpload } = useSelect((select) => {
 		const { getSettings } = select(blockEditorStore);
@@ -85,22 +85,23 @@ export default function Edit({ attributes, clientId }) {
 					style={{ display: 'block', width: '100%' }}
 					label={__('AI Image', 'ai-image')}
 					notices={[
+						// eslint-disable-next-line react/jsx-key
 						<div style={{ color: 'red' }}>
 							{errorMessage}
 							{errorMessage ===
 								'Please visit settings and input valid OpenAI token' && (
-								<FlexItem>
-									<Button
-										href="options-general.php?page=bdt-ai-image-options"
-										target="_blank"
-									>
-										{__(
-											'Visit Openai Settings',
-											'ai-image'
-										)}
-									</Button>
-								</FlexItem>
-							)}
+									<FlexItem>
+										<Button
+											href="options-general.php?page=bdthemes-ai-image-options"
+											target="_blank"
+										>
+											{__(
+												'Visit Openai Settings',
+												'ai-image'
+											)}
+										</Button>
+									</FlexItem>
+								)}
 						</div>,
 					]}
 				>
@@ -138,7 +139,7 @@ export default function Edit({ attributes, clientId }) {
 							label={__('Image size', 'ai-image')}
 							help={
 								__('Generated Images Size: ', 'ai-image') +
-									size || '512x512'
+								size || '512x512'
 							}
 							value={size}
 							options={[
@@ -155,10 +156,9 @@ export default function Edit({ attributes, clientId }) {
 									value: '256x256',
 								},
 							]}
-							onChange={(size) => {
-								setSize(size);
+							onChange={(newSize) => {
+								setSize(newSize);
 							}}
-							defaultValue="512x512"
 						/>
 
 						<Button
@@ -196,7 +196,7 @@ export default function Edit({ attributes, clientId }) {
 							label={__('Number of images', 'ai-image')}
 							help={
 								__('Number of Generated Images: ', 'ai-image') +
-									number || 4
+								number || 4
 							}
 							max={10}
 							min={1}
@@ -225,10 +225,9 @@ export default function Edit({ attributes, clientId }) {
 									value: '256x256',
 								},
 							]}
-							onChange={(size) => {
-								setSize(size);
+							onChange={(newSize) => {
+								setSize(newSize);
 							}}
-							defaultValue="512x512"
 						/>
 
 						<Button
@@ -259,6 +258,7 @@ export default function Edit({ attributes, clientId }) {
 									style={{ cursor: 'pointer' }}
 								>
 									<img
+										// eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
 										role="button"
 										className="wp-block-openai-image"
 										src={image}

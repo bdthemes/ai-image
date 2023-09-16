@@ -1,8 +1,8 @@
 <?php
 /*
-* OpenAI Rest Controller 
+* OpenAI Rest Controller
 */
-class BdThemes_OpenAI_Rest_Controller extends WP_REST_CONTROLLER {
+class BDTHEMES_OPENAI_REST_CONTROLLER extends WP_REST_CONTROLLER {
     public function __construct() {
         $this->namespace = 'bdthemes/v1';
         $this->rest_base = 'openai';
@@ -49,10 +49,12 @@ class BdThemes_OpenAI_Rest_Controller extends WP_REST_CONTROLLER {
         return current_user_can('edit_posts');
     }
     private function get_openai_api_key() {
-        $api_key = get_option('bdt_openai_api_key');
+        $api_key = get_option('bdthemes_openai_api_key');
         if (!empty($api_key)) {
             return $api_key;
         }
         return false;
     }
 }
+
+new BDTHEMES_OPENAI_REST_CONTROLLER();

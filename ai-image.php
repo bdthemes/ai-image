@@ -5,23 +5,18 @@
  * Plugin URI: https://bdthemes.com
  * Description: AI Image blocks for WordPress Users to generate images using OpenAI API.
  * Version: 1.0.0
- * Author: BDThemes
+ * Author: BdThemes
  * Author URI: https://bdthemes.com
  * License: GPLv3
  * Text Domain: ai-image
  * Domain Path: /languages/
  */
 
-// Stop Direct Access
-if (!defined('ABSPATH')) {
-	exit;
-}
-
 /**
  * Blocks Final Class
  */
 
-final class BDT_AIImage {
+final class BDTHEMES_AI_IMAGE {
 	public function __construct() {
 
 		// block initialization
@@ -53,9 +48,11 @@ final class BDT_AIImage {
 	 * Load Plugin Files
 	 */
 	public function load_files() {
-		require_once __DIR__ . '/Api/api.php';
-		new BdThemes_OpenAI_Rest_Controller();
-		is_admin() ? require_once __DIR__ . '/admin/settings.php' : '';
+		if(is_admin()){
+			require_once __DIR__ . '/admin/api.php';
+			require_once __DIR__ . '/admin/settings.php';
+
+		}
 	}
 
 	/**
@@ -95,4 +92,4 @@ final class BDT_AIImage {
  * Kickoff
  */
 
-BDT_AIImage::init();
+BDTHEMES_AI_IMAGE::init();

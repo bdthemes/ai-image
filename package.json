@@ -17,7 +17,7 @@
 		"extends": "@wordpress/stylelint-config/scss"
 	},
 	"author": "",
-	"license": "ISC",
+	"license": "MIT",
 	"dependencies": {
 		"@wordpress/api-fetch": "^6.29.0",
 		"@wordpress/eslint-plugin": "^14.0.0",

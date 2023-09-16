@@ -28,13 +28,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/image-generator/editor.scss");
 
-<<<<<<< HEAD
-=======
-/* eslint-disable @wordpress/no-unsafe-wp-apis */
-/* eslint-disable react/jsx-key */
-/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
->>>>>>> zak-bdt
 
 
 
@@ -48,22 +41,13 @@ __webpack_require__.r(__webpack_exports__);
 function Edit(_ref) {
   let {
     attributes,
-<<<<<<< HEAD
-    setAttributes,
-=======
->>>>>>> zak-bdt
     clientId
   } = _ref;
   const [loadingImages, setLoadingImages] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [resultImages, setResultImages] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [prompt, setPrompt] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)();
-<<<<<<< HEAD
-  const [number, setNumber] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)();
-  const [size, setSize] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)();
-=======
   const [number, setNumber] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(4);
   const [size, setSize] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('512x512');
->>>>>>> zak-bdt
   const {
     replaceBlock
   } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useDispatch)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__.store);
@@ -117,7 +101,7 @@ function Edit(_ref) {
         color: 'red'
       }
     }, errorMessage, errorMessage === 'Please visit settings and input valid OpenAI token' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Button, {
-      href: "options-general.php?page=bdt-ai-image-options",
+      href: "options-general.php?page=bdthemes-ai-image-options",
       target: "_blank"
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Visit Openai Settings', 'ai-image'))))]
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -130,18 +114,11 @@ function Edit(_ref) {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('What would you like to see?', 'ai-image'),
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Describe the image you would like to see, this is a required field', 'ai-image'),
     onChange: setPrompt,
-<<<<<<< HEAD
-    required: true
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalNumberControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Number of images', 'ai-image'),
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Number of images to generate, default is 4', 'ai-image'),
-=======
     value: prompt,
     required: true
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalNumberControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Number of images', 'ai-image'),
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Number of Generated Images: ', 'ai-image') + number,
->>>>>>> zak-bdt
     value: number,
     onChange: value => setNumber(value),
     min: 1,
@@ -150,11 +127,7 @@ function Edit(_ref) {
     type: "number"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.SelectControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Image size', 'ai-image'),
-<<<<<<< HEAD
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Size of the image to generate, default is 512x512', 'ai-image'),
-=======
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Generated Images Size: ', 'ai-image') + size || '512x512',
->>>>>>> zak-bdt
     value: size,
     options: [{
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Large', 'ai-image'),
@@ -166,10 +139,9 @@ function Edit(_ref) {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Small', 'ai-image'),
       value: '256x256'
     }],
-    onChange: size => {
-      setSize(size);
-    },
-    defaultValue: "512x512"
+    onChange: newSize => {
+      setSize(newSize);
+    }
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Button, {
     style: {
       display: 'block',
@@ -195,11 +167,7 @@ function Edit(_ref) {
     required: true
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalNumberControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Number of images', 'ai-image'),
-<<<<<<< HEAD
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Number of images to generate, default is 4', 'ai-image'),
-=======
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Number of Generated Images: ', 'ai-image') + number || 4,
->>>>>>> zak-bdt
     max: 10,
     min: 1,
     value: number,
@@ -208,11 +176,7 @@ function Edit(_ref) {
     type: "number"
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.SelectControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Image size', 'ai-image'),
-<<<<<<< HEAD
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Size of the image to generate, default is 512x512', 'ai-image'),
-=======
     help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Generated Image Size: ', 'ai-image') + size,
->>>>>>> zak-bdt
     value: size,
     options: [{
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Large', 'ai-image'),
@@ -224,10 +188,9 @@ function Edit(_ref) {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Small', 'ai-image'),
       value: '256x256'
     }],
-    onChange: size => {
-      setSize(size);
-    },
-    defaultValue: "512x512"
+    onChange: newSize => {
+      setSize(newSize);
+    }
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Button, {
     style: {
       display: 'block',
@@ -237,11 +200,7 @@ function Edit(_ref) {
     onClick: () => {
       handleSubmit();
     }
-<<<<<<< HEAD
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Generate', 'ai-image')))), !errorMessage && !loadingImages && resultImages.length > 0 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Placeholder, {
-=======
   }, resultImages.length > 0 ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Regenerate', 'ai-image') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Generate', 'ai-image')))), !errorMessage && !loadingImages && resultImages.length > 0 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Placeholder, {
->>>>>>> zak-bdt
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('AI Image', 'ai-image')
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, attributes.requestedPrompt), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     style: {
@@ -251,26 +210,16 @@ function Edit(_ref) {
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Please choose your image', 'ai-image')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Flex, {
     direction: "row",
     justify: 'space-between'
-<<<<<<< HEAD
-  }, resultImages.map(image => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.FlexBlock, {
-    key: image,
-=======
   }, resultImages.map((image, index) => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.FlexBlock, {
     key: index,
->>>>>>> zak-bdt
     style: {
       cursor: 'pointer'
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-<<<<<<< HEAD
-    className: "wp-block-openai-image",
-    src: image,
-=======
     role: "button",
     className: "wp-block-openai-image",
     src: image,
     alt: attributes.requestedPrompt,
->>>>>>> zak-bdt
     onClick: async () => {
       if (loadingImages) {
         return;
@@ -295,22 +244,13 @@ function Edit(_ref) {
           }));
         },
         allowedTypes: ['image'],
-<<<<<<< HEAD
-        onError: message => {
-          console.error(message);
-=======
         onError: () => {
->>>>>>> zak-bdt
           setLoadingImages(false);
         }
       });
     }
   })))))), loadingImages && !errorMessage && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Placeholder, {
-<<<<<<< HEAD
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('AI Image is loading please wait...', 'ai-image')
-=======
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('AI Image is loading please wait…', 'ai-image')
->>>>>>> zak-bdt
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Spinner, {
     style: {
       height: '30px',
@@ -390,15 +330,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-<<<<<<< HEAD
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-=======
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 
@@ -408,21 +339,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Save function
->>>>>>> zak-bdt
 function save(_ref) {
   let {
     attributes
   } = _ref;
-<<<<<<< HEAD
-  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save();
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, attributes.content);
-=======
   const {
     content
   } = attributes;
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save();
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, content);
->>>>>>> zak-bdt
 }
 
 /***/ }),
@@ -527,11 +452,7 @@ module.exports = window["wp"]["i18n"];
   \***********************************************/
 /***/ ((module) => {
 
-<<<<<<< HEAD
-module.exports = JSON.parse('{"apiVersion":2,"name":"ai-image/image-generator","version":"1.0.0","title":"AI Image","category":"ai-image","description":"AI Image Generator for WordPress Users to generate images using OpenAI API.","supports":{"html":false,"anchor":false,"customClassName":false},"keywords":["openai","ai","image","generator","chatbot","chatgpt3","chatgpt"],"attributes":{"id":{"type":"string"},"image":{"type":"string"}},"example":{"attributes":{"id":"ai-image-1","image":""}},"textdomain":"ai-image","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
-=======
 module.exports = JSON.parse('{"apiVersion":2,"name":"ai-image/image-generator","version":"1.0.0","title":"AI Image","category":"ai-image","description":"AI Image Generator using OpenAI API.","supports":{"html":false,"anchor":true},"keywords":["openai","ai","image","generator","chatbot","chatgpt3","chatgpt"],"attributes":{"id":{"type":"string"},"image":{"type":"string"}},"example":{"attributes":{"id":"ai-image-1","image":""}},"textdomain":"ai-image","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
->>>>>>> zak-bdt
 
 /***/ })
 

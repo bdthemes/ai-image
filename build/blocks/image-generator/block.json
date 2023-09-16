@@ -4,18 +4,10 @@
   "version": "1.0.0",
   "title": "AI Image",
   "category": "ai-image",
-<<<<<<< HEAD
-  "description": "AI Image Generator for WordPress Users to generate images using OpenAI API.",
-  "supports": {
-    "html": false,
-    "anchor": false,
-    "customClassName": false
-=======
   "description": "AI Image Generator using OpenAI API.",
   "supports": {
     "html": false,
     "anchor": true
->>>>>>> zak-bdt
   },
   "keywords": [
     "openai",
