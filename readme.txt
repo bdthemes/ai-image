@@ -1,5 +1,5 @@
-=== AI Image ===
-Contributors: bdthemes
+=== AI Image Generator by ChatGPT ===
+Contributors: bdthemes, selimrana, abutalib
 Tags: openai, image, chatgpt, chatbot, ai, bdthemes
 Stable tag: 1.0.0
 Requires PHP: 7.0.0
@@ -13,6 +13,7 @@ The AI Image Generator WordPress plugin is a powerful tool that utilizes artific
 
 == Description ==
 The AI Image Generator Plugin for WordPress is a powerful tool that harnesses the capabilities of artificial intelligence to generate stunning and realistic images directly within your WordPress website. This innovative plugin utilizes advanced machine learning algorithms to create high-quality images based on user-defined parameters and preferences.
+
 == Installation ==
 Installation is fairly straight forward. Install it from the WordPress plugin repository.
 
