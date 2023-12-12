@@ -1,4 +1,4 @@
-/=== AI Image Generator by ChatGPT ===
+=== AI Image Generator by ChatGPT ===
 Contributors: bdthemes, selimrana, abutalib
 Tags: openai, image, chatgpt, chatbot, ai, bdthemes
 Stable tag: 1.0.0
