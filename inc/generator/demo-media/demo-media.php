@@ -7,12 +7,6 @@ function my_custom_media_tab() {
 
 add_action( 'admin_menu', 'my_custom_media_tab' );
 
-function my_custom_media_tab_enqueue_scripts() {
-	wp_enqueue_script( 'my-custom-media-tab', BDT_AI_IMAGE_URL . '/inc/generator/demo-media/script.js', array( 'jquery', 'media-upload' ), '1.0.0', true );
-}
-
-add_action( 'admin_enqueue_scripts', 'my_custom_media_tab_enqueue_scripts' );
-
 function my_custom_media_tab_content() {
 	?>
 	<div class="wrap">
