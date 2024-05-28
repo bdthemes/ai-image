@@ -16,7 +16,7 @@
             // Show the loading indicator
             $('#loading-indicator').show();
 
-            var url = searchMode ? 'http://192.168.1.111:9001/wp-json/bdt/pexels/v1/search' : 'http://192.168.1.111:9001/wp-json/bdt/pexels/v1/curated';
+            var url = searchMode ? 'http://192.168.1.111:9001/wp-json/bdthemes/pexels/v1/search' : 'http://192.168.1.111:9001/wp-json/bdthemes/pexels/v1/curated';
             var data = {
                 api_key: api,
                 page: page,

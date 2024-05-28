@@ -64,7 +64,7 @@ class Api {
 		$page = isset( $parameters['page'] ) ? absint( $parameters['page'] ) : 1;
 		$per_page = isset( $parameters['per_page'] ) ? absint( $parameters['per_page'] ) : 15;
 
-		if('/bdt/pexels/v1/curated' === $route) {
+		if('/bdthemes/pexels/v1/curated' === $route) {
 			$search = 'curated';
 		}
 
@@ -94,7 +94,7 @@ class Api {
 	 * @return void
 	 */
 	public function register_routes() {
-		$namespace = 'bdt/pexels/v1';
+		$namespace = 'bdthemes/pexels/v1';
 		$base      = '/search';
 
 		register_rest_route(
