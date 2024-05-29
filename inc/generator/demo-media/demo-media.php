@@ -16,6 +16,7 @@ function my_custom_media_tab_content() {
 			<ul class="ai-image-tabs__nav">
 				<li class="ai-image-tabs__nav-item active" data-tab-target="tab1">Pexels</li>
 				<li class="ai-image-tabs__nav-item" data-tab-target="tab2">Pixabay</li>
+				<li class="ai-image-tabs__nav-item" data-tab-target="tab3">Unsplash</li>
 			</ul>
 			<div class="ai-image-tabs__content">
 				<div class="ai-image-tabs__content-item active" id="tab1">
@@ -37,6 +38,16 @@ function my_custom_media_tab_content() {
 
 					<div id="pixabay-loaded-images"></div>
 					<div id="pixabay-loading-indicator" style="display: none;">Loading...</div>
+				</div>
+				<div class="ai-image-tabs__content-item" id="tab3">
+					<h3>Unsplash Images</h3>
+					<form id="unsplash-search-form">
+						<input type="text" id="unsplash-search-input" placeholder="Search for images">
+						<input type="submit" value="Search">
+					</form>
+
+					<div id="unsplash-loaded-images"></div>
+					<div id="unsplash-loading-indicator" style="display: none;">Loading...</div>
 				</div>
 			</div>
 		</div>
