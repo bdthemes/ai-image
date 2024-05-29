@@ -3,7 +3,7 @@
 /**
  * API
  */
-namespace BDT_AI_IMG\Pexels;
+namespace BDT_AI_IMG\Pixabay;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -94,7 +94,7 @@ class Api {
 	 * @return void
 	 */
 	public function register_routes() {
-		$namespace = 'bdthemes/v1/pexels';
+		$namespace = 'bdthemes/v1/pixabay';
 		$base      = '/search';
 
 		register_rest_route(

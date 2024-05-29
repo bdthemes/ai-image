@@ -14,8 +14,8 @@ function my_custom_media_tab_content() {
 		<div id="bdt-ai-media-tab"></div>
 	</div>
 
-	<form id="search-form">
-		<input type="text" id="search-input" placeholder="Search for images">
+	<form id="pixels-search-form">
+		<input type="text" id="pixels-search-input" placeholder="Search for images">
 		<input type="submit" value="Search">
 	</form>
 	<style>
