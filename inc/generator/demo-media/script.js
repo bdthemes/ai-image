@@ -11,12 +11,25 @@
 
 
 		const App = {
+			tabs: function () {
+				$(document).ready(function () {
+					$('.ai-image-tabs__nav-item').click(function () {
+						var targetTab = $(this).data('tabTarget');
+
+						$('.ai-image-tabs__nav-item').removeClass('active');
+						$(this).addClass('active');
+
+						$('.ai-image-tabs__content-item').removeClass('active');
+						$('#' + targetTab).addClass('active');
+					});
+				});
+			},
 			loadImages: function (reset = false) {
 				if (loading) return;
 				loading = true;
 
 				// Show the loading indicator
-				$('#loading-indicator').show();
+				$('#pixels-loading-indicator').show();
 
 				var url = searchMode ? restURL + 'pexels/search' : restURL + 'pexels/curated';
 				var data = {
@@ -43,7 +56,7 @@
 							output += `<div class="paw-image-info">`;
 							output += `<p>Photographer: <a href="${image.photographer_url}">${image.photographer}</a></p>`;
 							// Photographer image will be displayed in the modal
-							output += `<img src="${image.photographer_url}" alt="${image.photographer}">`;
+							// output += `<img src="${image.photographer_url}" alt="${image.photographer}">`;
 
 
 							// output += `<a href="${image.src.original}" target="_blank">Download</a>`;
@@ -58,20 +71,20 @@
 						});
 
 						if (reset) {
-							$('#paw-images').html(output);
+							$('#pixels-loaded-images').html(output);
 						} else {
-							$('#paw-images').append(output);
+							$('#pixels-loaded-images').append(output);
 						}
 
 						// Hide the loading indicator
-						$('#loading-indicator').hide();
+						$('#pixels-loading-indicator').hide();
 
 						loading = false;
 						page++;
 					},
 					error: function () {
 						// Hide the loading indicator
-						$('#loading-indicator').hide();
+						$('#pixels-loading-indicator').hide();
 
 						loading = false;
 					}
@@ -117,6 +130,14 @@
 				});
 			},
 			init: function () {
+				/**
+				 * Layout
+				 */
+				App.tabs();
+				/**
+				 * /Layout
+				 */
+
 				App.loadImages();
 				$(window).on('scroll', App.checkScroll);
 				App.searchForm();

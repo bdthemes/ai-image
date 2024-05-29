@@ -22,6 +22,7 @@ class Generator {
 		}
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 	}
 
 	public function enqueue_scripts() {
@@ -34,6 +35,10 @@ class Generator {
 			'rest_url' => rest_url( 'bdthemes/v1/' ),
 		) );
 
+	}
+
+	public function enqueue_styles() {
+		wp_enqueue_style( 'bdt-ai-img', BDT_AI_IMAGE_URL . '/inc/generator/demo-media/style.css', array(), '1.0.0' );
 	}
 
 
