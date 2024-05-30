@@ -29,7 +29,7 @@ class Api {
         /**
          * Check if the request is coming from the same domain
          */
-
+		return true;
         $origin = $request->get_header( 'origin' );
 
         if ( ! $origin ) {

@@ -2,7 +2,8 @@
 	$(document).ready(function () {
 		console.log('script.js loaded 1');
 		const restURL = BDT_AI_IMG.rest_url;
-		var api = 'l7Pk56fQ7sjfslcgFBUXVuggY5sZ2EIRLtSvM1pBwLyzpIWjdQ93gVpH';
+		const api_pixels = 'l7Pk56fQ7sjfslcgFBUXVuggY5sZ2EIRLtSvM1pBwLyzpIWjdQ93gVpH';
+		const api_pixabay = '27427772-5e3b7770787f4e0e591d5d2eb';
 		var page = 1;
 		var per_page = 15;
 		var loading = false;
@@ -24,7 +25,66 @@
 					});
 				});
 			},
-			loadImages: function (reset = false) {
+			preparePixelsImages: function (images) {
+				var output = [];
+
+				$.each(images, function (index, image) {
+					output.push({
+						src: {
+							original: image.src.original,
+							large: image.src.large,
+							medium: image.src.medium,
+							small: image.src.small
+						},
+						photographer: image.photographer,
+						photographer_url: image.photographer_url,
+						url: image.url,
+						thumbnail: image.src.tiny
+					});
+				});
+
+				return output;
+			},
+			preparePixabayImages: function (images) {
+			},
+			showImages: function (imgData, type) {
+				var output = '';
+
+				if ('pixels' === type) {
+					const getImgData = App.preparePixelsImages(imgData);
+				}
+
+				if ('pixabay' === type) {
+					const getImgData = App.preparePixabayImages(imgData);
+				}
+
+				$.each(getImgData, function (index, image) {
+					let sources = image.src;
+
+					let downloadBtns = '';
+
+					for (let key in sources) {
+						downloadBtns += `<button download class="btn btn-primary download-btn" data-url="${sources[key]}">Download ${key}</button>`;
+					}
+
+					output += `
+					<div class="col-6 col-md-4 col-lg-3 mb-4">
+						<div class="card">
+							<img src="${image.thumbnail}" class="card-img-top" alt="${image.photographer}">
+							<div class="card-body">
+								<h5 class="card-title
+								">${image.photographer}</h5>
+								<a href="${image.url}" target="_blank" class="btn btn-primary">View</a>
+								` + downloadBtns + `
+							</div>
+						</div>
+					</div>
+					`;
+				});
+
+				return output;
+			},
+			loadPixelsImages: function (reset = false) {
 				if (loading) return;
 				loading = true;
 
@@ -33,7 +93,7 @@
 
 				var url = searchMode ? restURL + 'pexels/search' : restURL + 'pexels/curated';
 				var data = {
-					api_key: api,
+					api_key: api_pixels,
 					page: page,
 					per_page: per_page
 				};
@@ -47,28 +107,8 @@
 					method: 'POST',
 					data: data,
 					success: function (response) {
-						var images = response;
-						var output = '';
 
-						$.each(images, function (index, image) {
-							output += `<div class="paw-image">`;
-							output += `<img src="${image.src.medium}" alt="${image.photographer}">`;
-							output += `<div class="paw-image-info">`;
-							output += `<p>Photographer: <a href="${image.photographer_url}">${image.photographer}</a></p>`;
-							// Photographer image will be displayed in the modal
-							// output += `<img src="${image.photographer_url}" alt="${image.photographer}">`;
-
-
-							// output += `<a href="${image.src.original}" target="_blank">Download</a>`;
-							output += `<a href="${image.url}" target="_blank">View on Pexels</a>`;
-							output += '<button class="download-btn" data-url="' + image.src.original + '">Upload</button>';
-							output += `<button class="download-btn" data-url="${image.src.large}">Large</button>`;
-							output += `<button class="download-btn" data-url="${image.src.medium}">Medium</button>`;
-							output += `<button class="download-btn" data-url="${image.src.small}">Small</button>`;
-							output += `</div>`;
-							output += `</div>`;
-
-						});
+						var output = App.showImages(response, 'pixels');
 
 						if (reset) {
 							$('#pixels-loaded-images').html(output);
@@ -90,9 +130,55 @@
 					}
 				});
 			},
+			loadPixabayImages: function (reset = false) {
+				if (loading) return;
+				loading = true;
+
+				// Show the loading indicator
+				$('#pixabay-loading-indicator').show();
+
+				var url = searchMode ? restURL + 'pixabay/search' : restURL + 'pixabay/curated';
+				var data = {
+					api_key: api_pixabay,
+					page: page,
+					per_page: per_page
+				};
+
+				if (searchMode) {
+					data.search = search;
+				}
+
+				$.ajax({
+					url: url,
+					method: 'POST',
+					data: data,
+					success: function (response) {
+
+						var output = App.showImages(response, 'pixabay');
+
+						if (reset) {
+							$('#pixabay-loaded-images').html(output);
+						} else {
+							$('#pixabay-loaded-images').append(output);
+						}
+
+						// Hide the loading indicator
+						$('#pixabay-loading-indicator').hide();
+
+						loading = false;
+						page++;
+					},
+					error: function () {
+						// Hide the loading indicator
+						$('#pixabay-loading-indicator').hide();
+
+						loading = false;
+					}
+				});
+			},
 			checkScroll: function () {
 				if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-					App.loadImages();
+					App.loadPixelsImages();
 				}
 			},
 			searchForm: function () {
@@ -101,7 +187,14 @@
 					search = $('#pixels-search-input').val().trim();
 					page = 1;
 					searchMode = true;
-					App.loadImages(true);
+					App.loadPixelsImages(true);
+				});
+				$('#pixabay-search-form').on('submit', function (e) {
+					e.preventDefault();
+					search = $('#pixabay-search-input').val().trim();
+					page = 1;
+					searchMode = true;
+					App.loadPixabayImages(true);
 				});
 			},
 			downLoad: function () {
@@ -138,7 +231,7 @@
 				 * /Layout
 				 */
 
-				App.loadImages();
+				App.loadPixelsImages();
 				$(window).on('scroll', App.checkScroll);
 				App.searchForm();
 
