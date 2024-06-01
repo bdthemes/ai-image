@@ -49,13 +49,13 @@
 			},
 			showImages: function (imgData, type) {
 				var output = '';
-
+				var getImgData = [];
 				if ('pixels' === type) {
-					const getImgData = App.preparePixelsImages(imgData);
+					var getImgData = App.preparePixelsImages(imgData);
 				}
 
 				if ('pixabay' === type) {
-					const getImgData = App.preparePixabayImages(imgData);
+					var getImgData = App.preparePixabayImages(imgData);
 				}
 
 				$.each(getImgData, function (index, image) {
@@ -64,7 +64,7 @@
 					let downloadBtns = '';
 
 					for (let key in sources) {
-						downloadBtns += `<button download class="btn btn-primary download-btn" data-url="${sources[key]}">Download ${key}</button>`;
+						downloadBtns += `<button download class="btn btn-primary bdt-aimg-download-btn" data-url="${sources[key]}">Download ${key}</button>`;
 					}
 
 					output += `
@@ -89,7 +89,7 @@
 				loading = true;
 
 				// Show the loading indicator
-				$('#pixels-loading-indicator').show();
+				document.getElementById('pixels-loading-indicator').style.display = 'block';
 
 				var url = searchMode ? restURL + 'pexels/search' : restURL + 'pexels/curated';
 				var data = {
@@ -102,40 +102,42 @@
 					data.search = search;
 				}
 
-				$.ajax({
-					url: url,
+				fetch(url, {
 					method: 'POST',
-					data: data,
-					success: function (response) {
-
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(data)
+				})
+					.then(response => response.json())
+					.then(response => {
 						var output = App.showImages(response, 'pixels');
 
 						if (reset) {
-							$('#pixels-loaded-images').html(output);
+							document.getElementById('pixels-loaded-images').innerHTML = output;
 						} else {
-							$('#pixels-loaded-images').append(output);
+							document.getElementById('pixels-loaded-images').insertAdjacentHTML('beforeend', output);
 						}
 
 						// Hide the loading indicator
-						$('#pixels-loading-indicator').hide();
+						document.getElementById('pixels-loading-indicator').style.display = 'none';
 
 						loading = false;
 						page++;
-					},
-					error: function () {
+					})
+					.catch(() => {
 						// Hide the loading indicator
-						$('#pixels-loading-indicator').hide();
+						document.getElementById('pixels-loading-indicator').style.display = 'none';
 
 						loading = false;
-					}
-				});
+					});
 			},
 			loadPixabayImages: function (reset = false) {
 				if (loading) return;
 				loading = true;
 
 				// Show the loading indicator
-				$('#pixabay-loading-indicator').show();
+				document.getElementById('pixabay-loading-indicator').style.display = 'block';
 
 				var url = searchMode ? restURL + 'pixabay/search' : restURL + 'pixabay/curated';
 				var data = {
@@ -148,33 +150,35 @@
 					data.search = search;
 				}
 
-				$.ajax({
-					url: url,
+				fetch(url, {
 					method: 'POST',
-					data: data,
-					success: function (response) {
-
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(data)
+				})
+					.then(response => response.json())
+					.then(response => {
 						var output = App.showImages(response, 'pixabay');
 
 						if (reset) {
-							$('#pixabay-loaded-images').html(output);
+							document.getElementById('pixabay-loaded-images').innerHTML = output;
 						} else {
-							$('#pixabay-loaded-images').append(output);
+							document.getElementById('pixabay-loaded-images').insertAdjacentHTML('beforeend', output);
 						}
 
 						// Hide the loading indicator
-						$('#pixabay-loading-indicator').hide();
+						document.getElementById('pixabay-loading-indicator').style.display = 'none';
 
 						loading = false;
 						page++;
-					},
-					error: function () {
+					})
+					.catch(() => {
 						// Hide the loading indicator
-						$('#pixabay-loading-indicator').hide();
+						document.getElementById('pixabay-loading-indicator').style.display = 'none';
 
 						loading = false;
-					}
-				});
+					});
 			},
 			checkScroll: function () {
 				if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
@@ -197,9 +201,9 @@
 					App.loadPixabayImages(true);
 				});
 			},
-			downLoad: function () {
-				var imageUrl = $(this).data('url');
-				var button = $(this);
+			downLoad: function (img) {
+				var imageUrl = $(img).data('url');
+				var button = $(img);
 
 				// Show loading indicator on the button
 				button.text('Uploading...');
@@ -235,8 +239,8 @@
 				$(window).on('scroll', App.checkScroll);
 				App.searchForm();
 
-				$(document).on('click', '.download-btn', function () {
-					App.downLoad.call(this);
+				$(document).on('click', '.bdt-aimg-download-btn', function () {
+					App.downLoad(this);
 				});
 			}
 		}
