@@ -27,7 +27,7 @@ class Generator {
 
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( 'bdt-ai-img', BDT_AI_IMAGE_URL . '/inc/generator/demo-media/script.js', array( 'jquery', 'media-upload' ), '1.0.0', true );
+		wp_enqueue_script( 'bdt-ai-img', BDT_AI_IMAGE_ASSETS . 'admin/js/bdt-ai-generator.min.js', array( 'jquery', 'media-upload' ), '1.0.0', true );
 
 		wp_localize_script( 'bdt-ai-img', 'BDT_AI_IMG', array(
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
@@ -38,7 +38,7 @@ class Generator {
 	}
 
 	public function enqueue_styles() {
-		wp_enqueue_style( 'bdt-ai-img', BDT_AI_IMAGE_URL . '/inc/generator/demo-media/style.css', array(), '1.0.0' );
+		wp_enqueue_style( 'bdt-ai-img', BDT_AI_IMAGE_ASSETS . 'admin/css/bdt-ai-generator.css', array(), '1.0.0' );
 	}
 
 

@@ -1,34 +1,46 @@
 {
-	"name": "ai-image",
-	"version": "1.0.0",
-	"description": "",
-	"main": "build/blocks/index.js",
-	"scripts": {
-		"build": "wp-scripts build",
-		"format": "wp-scripts format",
-		"lint:css": "wp-scripts lint-style",
-		"lint:js": "wp-scripts lint-js",
-		"packages-update": "wp-scripts packages-update",
-		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start"
-	},
-	"prettier": "@wordpress/prettier-config",
-	"stylelint": {
-		"extends": "@wordpress/stylelint-config/scss"
-	},
-	"author": "",
-	"license": "MIT",
-	"dependencies": {
-		"@wordpress/api-fetch": "^6.29.0",
-		"@wordpress/eslint-plugin": "^14.0.0",
-		"@wordpress/prettier-config": "^2.10.0",
-		"@wordpress/scripts": "^25.4.0",
-		"@wordpress/stylelint-config": "^21.10.0",
-		"dotenv": "^16.0.3",
-		"dotenv-webpack": "^8.0.1",
-		"openai": "^3.2.1"
-	},
-	"devDependencies": {
-		"eslint-config-prettier": "^8.6.0"
-	}
+  "name": "ai-image",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/blocks/index.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "format": "wp-scripts format",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js",
+    "packages-update": "wp-scripts packages-update",
+    "plugin-zip": "wp-scripts plugin-zip",
+    "start": "wp-scripts start"
+  },
+  "prettier": "@wordpress/prettier-config",
+  "stylelint": {
+    "extends": "@wordpress/stylelint-config/scss"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@wordpress/api-fetch": "^6.29.0",
+    "@wordpress/eslint-plugin": "^14.0.0",
+    "@wordpress/prettier-config": "^2.10.0",
+    "@wordpress/scripts": "^25.4.0",
+    "@wordpress/stylelint-config": "^21.10.0",
+    "dotenv": "^16.0.3",
+    "dotenv-webpack": "^8.0.1",
+    "openai": "^3.2.1",
+    "grunt-contrib-concat": "^1.0.1"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.6.0",
+    "grunt": "^1.6.1",
+    "grunt-build-number": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^5.0.0",
+    "grunt-contrib-less": "^3.0.0",
+    "grunt-contrib-uglify": "^5.0.1",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-rtlcss": "^2.0.2",
+    "grunt-terser": "^2.0.0",
+    "jit-grunt": "^0.10.0"
+  },
+  "buildnum": "6"
 }
