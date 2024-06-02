@@ -82,30 +82,31 @@
 					// `;
 					output += `
 					<div class="card">
-					<img src="${image.thumbnail}" class="card-img-top" alt="${image.photographer}">
+					     <div class="image-wrap">
+						     <img src="${image.thumbnail}" class="card-img-top" alt="${image.photographer}">
+
+							 <div class="card-button-wrap">
+								<a href="https://www.pexels.com/photo/steam-and-barren-hills-landscape-24778776/" target="_blank" class="btn btn-primary view-btn">View</a>
+								<button class="btn download-large">Download Large</button>
+							</div>
+							
+							<div class="download-button-dropdown" style="float:right;">
+								<button class="dropbtn">
+									<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+									<path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M12 6h.01M12 12h.01M12 18h.01"/>
+								</svg>
+								</button>
+	
+								<div class="download-button-content">
+									<button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="https://images.pexels.com/photos/24778776/pexels-photo-24778776.jpeg">Download original</button><button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="https://images.pexels.com/photos/24778776/pexels-photo-24778776.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=650&amp;w=940">Download large</button><button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="https://images.pexels.com/photos/24778776/pexels-photo-24778776.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350">Download medium</button><button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="https://images.pexels.com/photos/24778776/pexels-photo-24778776.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=130">Download small</button>
+								</div>
+							</div>
+						 </div>
 						<div class="card-body">
 							<h5 class="card-title
 							">Tomáš Malík</h5>
 						</div>
-						<div class="card-button-wrap">
-							<a href="https://www.pexels.com/photo/steam-and-barren-hills-landscape-24778776/" target="_blank" class="btn btn-primary view-btn">View</a>
-							<button class="btn download-large">Download Large</button>
-						</div>
-						
 
-
-						<div class="dropdown" style="float:right;">
-							<button class="dropbtn">
-								<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-								<path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M12 6h.01M12 12h.01M12 18h.01"/>
-						  	</svg>
-						  
-							</button>
-
-							<div class="dropdown-content">
-						    	<button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="https://images.pexels.com/photos/24778776/pexels-photo-24778776.jpeg">Download original</button><button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="https://images.pexels.com/photos/24778776/pexels-photo-24778776.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=650&amp;w=940">Download large</button><button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="https://images.pexels.com/photos/24778776/pexels-photo-24778776.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350">Download medium</button><button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="https://images.pexels.com/photos/24778776/pexels-photo-24778776.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=130">Download small</button>
-							</div>
-						</div>
 
 						</div>
 
