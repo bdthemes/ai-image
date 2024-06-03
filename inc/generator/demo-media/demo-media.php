@@ -10,21 +10,35 @@ add_action( 'admin_menu', 'my_custom_media_tab' );
 function my_custom_media_tab_content() {
 	?>
 	<div class="wrap">
-		<h2>Image Generator</h2>
+		<h2 class="ai-image-title">Image Generator</h2>
 
 		<div class="ai-image-tabs">
-			<ul class="ai-image-tabs__nav">
-				<li class="ai-image-tabs__nav-item active" data-tab-target="tab1">Pexels</li>
-				<li class="ai-image-tabs__nav-item" data-tab-target="tab2">Pixabay</li>
-				<li class="ai-image-tabs__nav-item" data-tab-target="tab3">Unsplash</li>
-			</ul>
+			<div class="ai-image-tabs-search-wrap">
+				<ul class="ai-image-tabs__nav">
+					<li class="ai-image-tabs__nav-item active pexels" data-tab-target="tab1">Pexels</li>
+					<li class="ai-image-tabs__nav-item pixabay" data-tab-target="tab2">Pixabay</li>
+					<li class="ai-image-tabs__nav-item unsplash" data-tab-target="tab3">Unsplash</li>
+				</ul>
+
+				<form id="pixels-search-form" class="ai-image-search">
+					<input type="text" id="pixels-search-input" placeholder="Search for images">
+					<!-- <input type="submit" value="Search"> -->
+					<button type="submit" >
+						<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+						<path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+						</svg>
+					</button>
+				</form>
+
+			</div>
+
 			<div class="ai-image-tabs__content">
 				<div class="ai-image-tabs__content-item active" id="tab1">
-					<h3>Pixel Images</h3>
-					<form id="pixels-search-form">
+					<!-- <h3>Pixel Images</h3> -->
+					<!-- <form id="pixels-search-form">
 						<input type="text" id="pixels-search-input" placeholder="Search for images">
 						<input type="submit" value="Search">
-					</form>
+					</form> -->
 
 					<div id="pixels-loaded-images"></div>
 					<div id="pixels-loading-indicator" style="display: none;">Loading...</div>
