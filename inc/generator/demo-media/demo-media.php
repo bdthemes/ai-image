@@ -81,6 +81,8 @@ function upload_image_to_wp() {
 
 	$image_data = file_get_contents( $image_url );
 	$filename   = basename( $image_url );
+	// remove query string from filename
+	$filename = preg_replace( '/\?.*/', '', $filename );
 
 	if ( wp_mkdir_p( $upload_dir['path'] ) ) {
 		$file = $upload_dir['path'] . '/' . $filename;

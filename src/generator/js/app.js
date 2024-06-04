@@ -80,11 +80,13 @@
 					// 		</div>
 					// 	</div>
 					// `;
-					console.log(image);
+
+					// console.log(image);
+
 					output += `
 					<div class="card">
 					     <div class="aiImg-image-wrap">
-						     <img src="${image.src.original}" class="card-img-top" alt="${image.photographer}">
+						     <img src="${image.src.large}" class="card-img-top" alt="${image.photographer}">
 
 						  	 <div class="aiImg-download-view-wrap">
 									<a href="https://www.pexels.com/photo/steam-and-barren-hills-landscape-24778776/" target="_blank" title="View More" class="dropbtn aiImg-view-btn">
@@ -103,8 +105,8 @@
 							</a>
 
 							<div class="download-button-dropdown">
-								<button class="dropbtn aiImg-drop-btn bdt-aimg-download-btn" data-url="https://images.pexels.com/photos/24778776/pexels-photo-24778776.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=650&amp;w=940">
-									download
+								<button class="dropbtn aiImg-drop-btn bdt-aimg-download-btn" data-url="${image.src.large}">
+									Download
 									<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
 									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
 									</svg>
