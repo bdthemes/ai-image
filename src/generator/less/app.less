@@ -1,3 +1,15 @@
+.ai-image-tabs {
+  position: relative;
+}
+
+div#pixels-loading-indicator {
+  text-align: center;
+}
+
+// div#pixels-loading-indicator img{
+//   width: 70px;
+// }
+
 .ai-image-title {
   margin: 0 0 20px !important;
   padding: 0 !important;
@@ -6,7 +18,8 @@
 
 .ai-image-tabs-search-wrap {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column-reverse;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px;
@@ -21,22 +34,21 @@
 }
 
 .ai-image-tabs__nav-item {
-  padding: 16px 60px;
+  padding: 15px 20px;
   cursor: pointer;
   background-color: #e3e5ee;
   margin: 0;
   font-weight: 600;
   font-size: 16px;
-
+  &.active {
+    color: #000;
+    background-color: #ffffff;
+  }
   &:first-child {
     border-top-left-radius: 6px;
   }
   &:last-child {
     border-top-right-radius: 6px;
-  }
-  &.active {
-    color: #000;
-    background-color: #ffffff;
   }
 }
 
@@ -57,18 +69,17 @@
 
 .ai-image-search {
   position: relative;
+  width: 100%;
   input {
     padding: 5px 15px;
-    width: 500px;
+    width: 100%;
     height: 50px;
     border-radius: 6px;
     border: 0;
-    background: #e3e5ee;
+    background: #ffffff;
     outline: none;
     box-shadow: none !important;
     position: relative;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
     &:focus {
       box-shadow: none !important;
     }
@@ -93,7 +104,10 @@
 
 .ai-image-tabs__content {
   background-color: #fff;
-  padding: 30px;
+  padding: 20px;
+  border-top-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 
 #pixels-loaded-images img {
@@ -186,6 +200,20 @@
     }
 }
 
+.aiImg-download-and-drop-wrap {
+  display: flex;
+  align-items: center;
+  .ai-image-drop-btn {
+      border-left: 1px solid #cccbcf66;
+      border-top-right-radius: 30px;
+      border-bottom-right-radius: 30px;
+  }
+  .bdt-aimg-download-btn-large {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+}
+
 .aiImg-download-view-wrap {
     position: absolute;
     left: 50%;
@@ -197,14 +225,14 @@
     .dropbtn {
       background-color: rgba(255, 255, 255, 0.929);
       color: #3c3636;
-      padding: 10px;
+      padding: 15px;
       border: none;
       cursor: pointer;
       border-radius: 50%;
       display: block;
       margin-top: 12px;
         svg {
-          width: 21px;
+          width: 20px;
           height: 20px;
           display: block;
           transform: rotate(180deg);
@@ -218,12 +246,13 @@
       align-items: center;
       gap: 8px;
       text-transform: capitalize;
-      padding: 12px 24px;
+      padding: 0 16px;
+      height: 45px;
       background-color: #32a080;
       color: #fff;
       justify-content: space-between;
       font-size: 14px;
-      border-radius: 30px;
+      border-radius: 0;
       z-index: 1;
       position: relative;
       &:hover {
@@ -312,12 +341,37 @@
   #pixels-loaded-images {
       columns: 2;
   }
+  .ai-image-tabs__nav-item {
+    padding: 20px 30px;
+  }  
+  .ai-image-search {
+    width: auto;
+    input {
+      width: 300px;
+    }
+  }
+  .ai-image-tabs__content {
+    padding: 30px; 
+  }
+
+  .ai-image-tabs-search-wrap {
+    flex-direction: row;
+    align-items: center;
+  } 
 }
 
 @media (min-width: 1024px) {
   #pixels-loaded-images {
       columns: 3;
   }
+  .ai-image-search {
+      input {
+        width: 500px;
+      }
+   }
+   .ai-image-tabs__nav-item {
+    padding: 28px 60px;
+  } 
 }
 
 @media (min-width: 1440px) {

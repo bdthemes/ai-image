@@ -177,19 +177,26 @@
 									class="aiImg-author-img" alt="Tomáš Malík">
 								<span class="aiImg-author-name">Tomáš Malík</span>
 							</a>
-
-							<div class="download-button-dropdown">
-								<button class="dropbtn aiImg-drop-btn bdt-aimg-download-btn" data-url="${image.src.large}">
-									Download
+							<div class="aiImg-download-and-drop-wrap">
+						    	<button class="dropbtn aiImg-drop-btn bdt-aimg-download-btn-large" data-url="${image.src.large}">Download
 									<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-										viewBox="0 0 24 24">
-										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-											d="m19 9-7 7-7-7" />
+									viewBox="0 0 24 24">
+									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+										d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4" />
 									</svg>
 								</button>
+								<div class="download-button-dropdown">
+									<button class="dropbtn aiImg-drop-btn ai-image-drop-btn" data-url="${image.src.large}">
+										<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+											viewBox="0 0 24 24">
+											<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+												d="m19 9-7 7-7-7" />
+										</svg>
+									</button>
 
-								<div class="download-button-content">
-									${App.renderDownloadBtns(sources)}
+									<div class="download-button-content">
+										${App.renderDownloadBtns(sources)}
+									</div>
 								</div>
 							</div>
 						</div>
@@ -323,7 +330,6 @@
 			downLoad: function (img) {
 				var imageUrl = $(img).data('url');
 				var button = $(img);
-
 				// Show loading indicator on the button
 				button.text('Uploading...');
 				$.ajax({

@@ -41,7 +41,7 @@ function my_custom_media_tab_content() {
 					</form> -->
 
 					<div id="pixels-loaded-images"></div>
-					<div id="pixels-loading-indicator" style="display: none;">Loading...</div>
+					<div id="pixels-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
 				</div>
 				<div class="ai-image-tabs__content-item" id="pixabay">
 					<h3>Pixabay Images</h3>
@@ -51,7 +51,7 @@ function my_custom_media_tab_content() {
 					</form>
 
 					<div id="pixabay-loaded-images"></div>
-					<div id="pixabay-loading-indicator" style="display: none;">Loading...</div>
+					<div id="pixabay-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
 				</div>
 				<div class="ai-image-tabs__content-item" id="tab3">
 					<h3>Unsplash Images</h3>
@@ -61,7 +61,7 @@ function my_custom_media_tab_content() {
 					</form>
 
 					<div id="unsplash-loaded-images"></div>
-					<div id="unsplash-loading-indicator" style="display: none;">Loading...</div>
+					<div id="unsplash-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
 				</div>
 			</div>
 		</div>
