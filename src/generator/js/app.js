@@ -93,7 +93,6 @@
 											<path stroke="currentColor" stroke-width="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
 										</svg>
 									</a>
-								
 							  </div>
 						 </div>
 
@@ -102,7 +101,6 @@
 								<img src="https://images.pexels.com/users/avatars/748453803/alexander-mass-974.jpeg?auto=compress&fit=crop&h=130&w=130&dpr=1" class="aiImg-author-img" alt="Tomáš Malík">
 								<span class="aiImg-author-name">Tomáš Malík</span>
 							</a>
-
 
 							<div class="download-button-dropdown">
 								<button class="dropbtn aiImg-drop-btn aiImg-download-large" data-url="https://images.pexels.com/photos/24778776/pexels-photo-24778776.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=650&amp;w=940">
