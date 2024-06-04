@@ -110,13 +110,13 @@ div#pixels-loading-indicator {
   border-bottom-right-radius: 6px;
 }
 
-#pixels-loaded-images img {
+.aiImg-loaded-images img {
     width: 100%;
     height: auto;
     vertical-align: middle;
 }
 
-#pixels-loaded-images {
+.aiImg-loaded-images {
     grid-gap: 30px;
     columns: 1;
 }
@@ -284,9 +284,9 @@ div#pixels-loading-indicator {
       border-color: transparent transparent white transparent;
       z-index: 11;
       transform: rotate(180deg);
-    } 
+    }
   }
-  
+
   .download-button-content .bdt-aimg-download-btn {
     width: 100%;
     text-align: left;
@@ -335,15 +335,15 @@ div#pixels-loading-indicator {
     }
   }
 }
-  
-  
+
+
 @media (min-width: 768px) {
-  #pixels-loaded-images {
+  .aiImg-loaded-images {
       columns: 2;
   }
   .ai-image-tabs__nav-item {
     padding: 20px 30px;
-  }  
+  }
   .ai-image-search {
     width: auto;
     input {
@@ -351,17 +351,17 @@ div#pixels-loading-indicator {
     }
   }
   .ai-image-tabs__content {
-    padding: 30px; 
+    padding: 30px;
   }
 
   .ai-image-tabs-search-wrap {
     flex-direction: row;
     align-items: center;
-  } 
+  }
 }
 
 @media (min-width: 1024px) {
-  #pixels-loaded-images {
+  .aiImg-loaded-images {
       columns: 3;
   }
   .ai-image-search {
@@ -371,17 +371,17 @@ div#pixels-loading-indicator {
    }
    .ai-image-tabs__nav-item {
     padding: 28px 60px;
-  } 
+  }
 }
 
 @media (min-width: 1440px) {
-  #pixels-loaded-images {
+  .aiImg-loaded-images {
       columns: 4;
   }
 }
 
 @media (min-width: 2560px) {
-  #pixels-loaded-images {
+  .aiImg-loaded-images {
       columns: 5;
   }
 }

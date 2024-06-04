@@ -17,7 +17,7 @@ function my_custom_media_tab_content() {
 				<ul class="ai-image-tabs__nav">
 					<li class="ai-image-tabs__nav-item active pexels" data-tab-target="pexels">Pexels</li>
 					<li class="ai-image-tabs__nav-item pixabay" data-tab-target="pixabay">Pixabay</li>
-					<li class="ai-image-tabs__nav-item unsplash" data-tab-target="tab3">Unsplash</li>
+					<!-- <li class="ai-image-tabs__nav-item unsplash" data-tab-target="tab3">Unsplash</li> -->
 				</ul>
 
 				<form id="pixels-search-form" class="ai-image-search">
@@ -40,7 +40,7 @@ function my_custom_media_tab_content() {
 						<input type="submit" value="Search">
 					</form> -->
 
-					<div id="pixels-loaded-images"></div>
+					<div id="pixels-loaded-images" class="aiImg-loaded-images"></div>
 					<div id="pixels-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
 				</div>
 				<div class="ai-image-tabs__content-item" id="pixabay">
@@ -50,7 +50,7 @@ function my_custom_media_tab_content() {
 						<input type="submit" value="Search">
 					</form>
 
-					<div id="pixabay-loaded-images"></div>
+					<div id="pixabay-loaded-images" class="aiImg-loaded-images"></div>
 					<div id="pixabay-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
 				</div>
 				<div class="ai-image-tabs__content-item" id="tab3">
@@ -60,7 +60,7 @@ function my_custom_media_tab_content() {
 						<input type="submit" value="Search">
 					</form>
 
-					<div id="unsplash-loaded-images"></div>
+					<div id="unsplash-loaded-images" class="aiImg-loaded-images"></div>
 					<div id="unsplash-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
 				</div>
 			</div>

@@ -24,7 +24,7 @@
 						}
 
 						if(targetTab === 'pixabay') {
-							App.loadPixabayImages();
+							App.loadPixabayImages(false);
 							console.log('pixabay');
 						}
 
@@ -81,48 +81,50 @@
 				return output;
 			},
 			preparePixabayImages: function (images) {
-				console.log(images);
-				var output = [];
+				let output = [];
 
 				$.each(images, function (index, image) {
+					console.log(image);
 					output.push({
 						src: {
 							original: {
 								name: 'original',
-								url: image.src.original
+								url: image.webformatURL
 							},
 							large: {
 								name: 'large',
-								url: image.src.large
+								url: image.largeImageURL
 							},
-							medium: {
-								name: 'medium',
-								url: image.src.medium
-							},
-							small: {
-								name: 'small',
-								url: image.src.small
-							},
+							// medium: {
+							// 	name: 'medium',
+							// 	url: image.medium
+							// },
+							// small: {
+							// 	name: 'small',
+							// 	url: image.small
+							// },
 							// portrait: {
 							// 	name: 'portrait',
-							// 	url: image.src.portrait
+							// 	url: image.portrait
 							// },
 							// landscape: {
 							// 	name: 'landscape',
-							// 	url: image.src.landscape
+							// 	url: image.landscape
 							// },
 							tiny: {
 								name: 'tiny',
-								url: image.src.tiny
+								url: image.tiny
 							}
 						},
 						photographer: image.photographer,
+						photographer_image: image.userImageURL,
 						photographer_url: image.photographer_url,
-						url: image.url,
-						thumbnail: image.src.tiny
+						url: image.pageURL,
+						thumbnail: image.previewURL
 					});
 				});
 
+				console.log(output);
 				return output;
 			},
 			renderDownloadBtns: function (sources) {
@@ -141,15 +143,17 @@
 				return downloadBtns;
 			},
 			showImages: function (imgData, type) {
-				var output = '';
-				var getImgData = [];
+				let output = '';
+				let getImgData = [];
 				if ('pixels' === type) {
-					var getImgData = App.preparePixelsImages(imgData);
+					getImgData = App.preparePixelsImages(imgData);
 				}
 
 				if ('pixabay' === type) {
-					var getImgData = App.preparePixabayImages(imgData);
+					getImgData = App.preparePixabayImages(imgData);
+
 				}
+				console.log('typeX');
 
 				$.each(getImgData, function (index, image) {
 					let sources = image.src;
@@ -233,6 +237,7 @@
 				})
 					.then(response => response.json())
 					.then(response => {
+
 						var output = App.showImages(response, 'pixels');
 
 						if (reset) {
@@ -263,7 +268,7 @@
 				// Show the loading indicator
 				document.getElementById('pixabay-loading-indicator').style.display = 'block';
 
-				var url = searchMode ? restURL + 'pixabay/search' : restURL + 'pixabay/curated';
+				var url = searchMode ? restURL + 'pixabay/search' : restURL + 'pixabay/search';
 				var data = {
 					api_key: api_pixabay,
 					page: page,
@@ -272,8 +277,10 @@
 
 				if (searchMode) {
 					data.search = search;
+				}else{
+					data.search = 'nature';
 				}
-
+				console.log(data);
 				fetch(url, {
 					method: 'POST',
 					headers: {
@@ -283,8 +290,11 @@
 				})
 					.then(response => response.json())
 					.then(response => {
-						var output = App.showImages(response, 'pixabay');
+						console.log('outputX');
+						console.log(response);
+						let output = App.showImages(response, 'pixabay');
 
+						console.log('output');
 						console.log(output);
 
 						if (reset) {
@@ -305,6 +315,8 @@
 
 						loading = false;
 					});
+
+
 			},
 			checkScroll: function () {
 				if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
@@ -353,7 +365,7 @@
 			},
 			load_images_default: function () {
 				App.loadPixelsImages();
-				App.loadPixabayImages();
+				// App.loadPixabayImages();
 			},
 			init: function () {
 				/**
