@@ -29,7 +29,6 @@ class Api {
         /**
          * Check if the request is coming from the same domain
          */
-		return true;
         $origin = $request->get_header( 'origin' );
 
         if ( ! $origin ) {
@@ -64,7 +63,7 @@ class Api {
 		$page = isset( $parameters['page'] ) ? absint( $parameters['page'] ) : 1;
 		$per_page = isset( $parameters['per_page'] ) ? absint( $parameters['per_page'] ) : 15;
 
-		if('/bdthemes/v1/pexels/curated' === $route) {
+		if('/bdthemes/v1/pixabay/curated' === $route) {
 			$search = 'curated';
 		}
 

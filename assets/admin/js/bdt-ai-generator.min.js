@@ -1,12 +1,12 @@
 (function ($) {
 	$(document).ready(function () {
-		console.log('script.js loaded 1');
 		const restURL = BDT_AI_IMG.rest_url;
 		const api_pixels = 'l7Pk56fQ7sjfslcgFBUXVuggY5sZ2EIRLtSvM1pBwLyzpIWjdQ93gVpH';
 		const api_pixabay = '27427772-5e3b7770787f4e0e591d5d2eb';
 		var page = 1;
 		var per_page = 15;
-		var loading = false;
+		let loading = false;
+		var loading_pixabay = false;
 		var search = '';
 		var searchMode = false;
 
@@ -15,7 +15,18 @@
 			tabs: function () {
 				$(document).ready(function () {
 					$('.ai-image-tabs__nav-item').click(function () {
-						var targetTab = $(this).data('tabTarget');
+						loading = false;
+						var targetTab = $(this).data('tab-target');
+
+						if(targetTab === 'pixels') {
+							App.loadPixelsImages();
+							console.log('pixels');
+						}
+
+						if(targetTab === 'pixabay') {
+							App.loadPixabayImages();
+							console.log('pixabay');
+						}
 
 						$('.ai-image-tabs__nav-item').removeClass('active');
 						$(this).addClass('active');
@@ -70,6 +81,49 @@
 				return output;
 			},
 			preparePixabayImages: function (images) {
+				console.log(images);
+				var output = [];
+
+				$.each(images, function (index, image) {
+					output.push({
+						src: {
+							original: {
+								name: 'original',
+								url: image.src.original
+							},
+							large: {
+								name: 'large',
+								url: image.src.large
+							},
+							medium: {
+								name: 'medium',
+								url: image.src.medium
+							},
+							small: {
+								name: 'small',
+								url: image.src.small
+							},
+							// portrait: {
+							// 	name: 'portrait',
+							// 	url: image.src.portrait
+							// },
+							// landscape: {
+							// 	name: 'landscape',
+							// 	url: image.src.landscape
+							// },
+							tiny: {
+								name: 'tiny',
+								url: image.src.tiny
+							}
+						},
+						photographer: image.photographer,
+						photographer_url: image.photographer_url,
+						url: image.url,
+						thumbnail: image.src.tiny
+					});
+				});
+
+				return output;
 			},
 			renderDownloadBtns: function (sources) {
 				let downloadBtns = '';
@@ -194,8 +248,10 @@
 					});
 			},
 			loadPixabayImages: function (reset = false) {
+
 				if (loading) return;
 				loading = true;
+				console.log('loadPixabayImages');
 
 				// Show the loading indicator
 				document.getElementById('pixabay-loading-indicator').style.display = 'block';
@@ -221,6 +277,8 @@
 					.then(response => response.json())
 					.then(response => {
 						var output = App.showImages(response, 'pixabay');
+
+						console.log(output);
 
 						if (reset) {
 							document.getElementById('pixabay-loaded-images').innerHTML = output;
@@ -287,6 +345,10 @@
 					}
 				});
 			},
+			load_images_default: function () {
+				App.loadPixelsImages();
+				App.loadPixabayImages();
+			},
 			init: function () {
 				/**
 				 * Layout
@@ -296,7 +358,10 @@
 				 * /Layout
 				 */
 
-				App.loadPixelsImages();
+				// App.loadPixelsImages();
+				// App.loadPixabayImages();
+				App.load_images_default();
+
 				$(window).on('scroll', App.checkScroll);
 				App.searchForm();
 

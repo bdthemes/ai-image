@@ -15,8 +15,8 @@ function my_custom_media_tab_content() {
 		<div class="ai-image-tabs">
 			<div class="ai-image-tabs-search-wrap">
 				<ul class="ai-image-tabs__nav">
-					<li class="ai-image-tabs__nav-item active pexels" data-tab-target="tab1">Pexels</li>
-					<li class="ai-image-tabs__nav-item pixabay" data-tab-target="tab2">Pixabay</li>
+					<li class="ai-image-tabs__nav-item active pexels" data-tab-target="pexels">Pexels</li>
+					<li class="ai-image-tabs__nav-item pixabay" data-tab-target="pixabay">Pixabay</li>
 					<li class="ai-image-tabs__nav-item unsplash" data-tab-target="tab3">Unsplash</li>
 				</ul>
 
@@ -33,7 +33,7 @@ function my_custom_media_tab_content() {
 			</div>
 
 			<div class="ai-image-tabs__content">
-				<div class="ai-image-tabs__content-item active" id="tab1">
+				<div class="ai-image-tabs__content-item active" id="pexels">
 					<!-- <h3>Pixel Images</h3> -->
 					<!-- <form id="pixels-search-form">
 						<input type="text" id="pixels-search-input" placeholder="Search for images">
@@ -43,7 +43,7 @@ function my_custom_media_tab_content() {
 					<div id="pixels-loaded-images"></div>
 					<div id="pixels-loading-indicator" style="display: none;">Loading...</div>
 				</div>
-				<div class="ai-image-tabs__content-item" id="tab2">
+				<div class="ai-image-tabs__content-item" id="pixabay">
 					<h3>Pixabay Images</h3>
 					<form id="pixabay-search-form">
 						<input type="text" id="pixabay-search-input" placeholder="Search for images">
