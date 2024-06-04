@@ -85,73 +85,80 @@
 
 					output += `
 					<div class="card">
-					     <div class="aiImg-image-wrap">
-						     <img src="${image.src.large}" class="card-img-top" alt="${image.photographer}">
-
-						  	 <div class="aiImg-download-view-wrap">
-									<a href="https://www.pexels.com/photo/steam-and-barren-hills-landscape-24778776/" target="_blank" title="View More" class="dropbtn aiImg-view-btn">
-										<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-											<path stroke="currentColor" stroke-width="2" d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"/>
-											<path stroke="currentColor" stroke-width="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
-										</svg>
-									</a>
-							  </div>
-						 </div>
+						<div class="aiImg-image-wrap">
+							<img src="${image.src.large}" class="card-img-top" alt="${image.photographer}">
+							<div class="aiImg-download-view-wrap">
+								<a href="https://www.pexels.com/photo/steam-and-barren-hills-landscape-24778776/" target="_blank"
+									title="View More" class="dropbtn aiImg-view-btn">
+									<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+										viewBox="0 0 24 24">
+										<path stroke="currentColor" stroke-width="2"
+											d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z" />
+										<path stroke="currentColor" stroke-width="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+									</svg>
+								</a>
+							</div>
+						</div>
 
 						<div class="aiImg-content-wrap">
 							<a href="#" class="aiImg-author-wrap">
-								<img src="https://images.pexels.com/users/avatars/748453803/alexander-mass-974.jpeg?auto=compress&fit=crop&h=130&w=130&dpr=1" class="aiImg-author-img" alt="Tomáš Malík">
+								<img src="https://images.pexels.com/users/avatars/748453803/alexander-mass-974.jpeg?auto=compress&fit=crop&h=130&w=130&dpr=1"
+									class="aiImg-author-img" alt="Tomáš Malík">
 								<span class="aiImg-author-name">Tomáš Malík</span>
 							</a>
 
 							<div class="download-button-dropdown">
 								<button class="dropbtn aiImg-drop-btn bdt-aimg-download-btn" data-url="${image.src.large}">
 									Download
-									<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
+									<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+										viewBox="0 0 24 24">
+										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+											d="m19 9-7 7-7-7" />
 									</svg>
-								</svg>
 								</button>
 
 								<div class="download-button-content">
 
-									<button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="https://images.pexels.com/photos/24778776/pexels-photo-24778776.jpeg">
-										<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
+									<button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="${image.src.original}">
+										<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+											viewBox="0 0 24 24">
+											<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+												d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4" />
 										</svg>
 										<span>original</span>
 									</button>
 
-									<button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="https://images.pexels.com/photos/24778776/pexels-photo-24778776.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=650&amp;w=940">
-									<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
+									<button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="${image.src.large}">
+										<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+											viewBox="0 0 24 24">
+											<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+												d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4" />
 										</svg>
 										<span>large</span>
 									</button>
 
-									<button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="https://images.pexels.com/photos/24778776/pexels-photo-24778776.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=350">
-										<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
+									<button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="${image.src.medium}">
+										<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+											viewBox="0 0 24 24">
+											<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+												d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4" />
 										</svg>
 										<span>medium</span>
 									</button>
 
-									<button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="https://images.pexels.com/photos/24778776/pexels-photo-24778776.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=130">
-										<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
+									<button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="${image.src.small}">
+										<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+											viewBox="0 0 24 24">
+											<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+												d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4" />
 										</svg>
 										<span>small</span>
-
 									</button>
 
 								</div>
+							</div>
 						</div>
-						</div>
-
-
-
-						</div>
-
+					</div>
 					`;
 				});
 
