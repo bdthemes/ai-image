@@ -31,10 +31,34 @@
 				$.each(images, function (index, image) {
 					output.push({
 						src: {
-							original: image.src.original,
-							large: image.src.large,
-							medium: image.src.medium,
-							small: image.src.small
+							original: {
+								name: 'original',
+								url: image.src.original
+							},
+							large: {
+								name: 'large',
+								url: image.src.large
+							},
+							medium: {
+								name: 'medium',
+								url: image.src.medium
+							},
+							small: {
+								name: 'small',
+								url: image.src.small
+							},
+							// portrait: {
+							// 	name: 'portrait',
+							// 	url: image.src.portrait
+							// },
+							// landscape: {
+							// 	name: 'landscape',
+							// 	url: image.src.landscape
+							// },
+							tiny: {
+								name: 'tiny',
+								url: image.src.tiny
+							}
 						},
 						photographer: image.photographer,
 						photographer_url: image.photographer_url,
@@ -46,6 +70,21 @@
 				return output;
 			},
 			preparePixabayImages: function (images) {
+			},
+			renderDownloadBtns: function (sources) {
+				let downloadBtns = '';
+				for (let key in sources) {
+					downloadBtns +=
+						`<button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="${sources[key]['url']}">
+						<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+							viewBox="0 0 24 24">
+							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+								d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4" />
+						</svg>
+						<span>${sources[key]['name']}</span>
+					</button>`;
+				}
+				return downloadBtns;
 			},
 			showImages: function (imgData, type) {
 				var output = '';
@@ -61,32 +100,10 @@
 				$.each(getImgData, function (index, image) {
 					let sources = image.src;
 
-					let downloadBtns = '';
-
-					for (let key in sources) {
-						downloadBtns += `<button download class="btn btn-primary bdt-aimg-download-btn" data-url="${sources[key]}">Download ${key}</button>`;
-					}
-
-					// output += `
-					// 	<div class="card">
-					// 		<img src="${image.thumbnail}" class="card-img-top" alt="${image.photographer}">
-					// 		<div class="card-body">
-					// 			<h5 class="card-title
-					// 			">${image.photographer}</h5>
-					// 		</div>
-					// 		<div class="card-button-wrap">
-					// 			<a href="${image.url}" target="_blank" class="btn btn-primary">View</a>
-					// 			` + downloadBtns + `
-					// 		</div>
-					// 	</div>
-					// `;
-
-					// console.log(image);
-
 					output += `
 					<div class="card">
 						<div class="aiImg-image-wrap">
-							<img src="${image.src.large}" class="card-img-top" alt="${image.photographer}">
+							<img src="${image.src.large.url}" class="card-img-top" alt="${image.photographer}">
 							<div class="aiImg-download-view-wrap">
 								<a href="https://www.pexels.com/photo/steam-and-barren-hills-landscape-24778776/" target="_blank"
 									title="View More" class="dropbtn aiImg-view-btn">
@@ -118,43 +135,7 @@
 								</button>
 
 								<div class="download-button-content">
-
-									<button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="${image.src.original}">
-										<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-											viewBox="0 0 24 24">
-											<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-												d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4" />
-										</svg>
-										<span>original</span>
-									</button>
-
-									<button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="${image.src.large}">
-										<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-											viewBox="0 0 24 24">
-											<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-												d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4" />
-										</svg>
-										<span>large</span>
-									</button>
-
-									<button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="${image.src.medium}">
-										<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-											viewBox="0 0 24 24">
-											<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-												d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4" />
-										</svg>
-										<span>medium</span>
-									</button>
-
-									<button download="" class="btn btn-primary bdt-aimg-download-btn" data-url="${image.src.small}">
-										<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-											viewBox="0 0 24 24">
-											<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-												d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4" />
-										</svg>
-										<span>small</span>
-									</button>
-
+									${App.renderDownloadBtns(sources)}
 								</div>
 							</div>
 						</div>
