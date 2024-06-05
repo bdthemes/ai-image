@@ -33,6 +33,7 @@ class Generator {
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
 			'nonce'    => wp_create_nonce( 'bdt-ai-img' ),
 			'rest_url' => rest_url( 'bdthemes/v1/' ),
+			'assets_url' => BDT_AI_IMAGE_ASSETS,
 		) );
 
 	}

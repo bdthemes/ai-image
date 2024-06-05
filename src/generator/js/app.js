@@ -76,7 +76,12 @@
 						photographer: image.photographer,
 						photographer_url: image.photographer_url,
 						url: image.url,
-						thumbnail: image.src.tiny
+						thumbnail: image.src.tiny,
+						user: {
+							name: image.photographer ? image.photographer : '',
+							avatar: BDT_AI_IMG.assets_url + 'imgs/avatar-human.svg',
+							profile: image.photographer_url ? image.photographer_url : ''
+						}
 					});
 				});
 
@@ -119,10 +124,14 @@
 							}
 						},
 						photographer: image.photographer,
-						photographer_image: image.userImageURL,
 						photographer_url: image.photographer_url,
 						url: image.pageURL,
-						thumbnail: image.previewURL
+						thumbnail: image.previewURL,
+						user: {
+							name: image.user,
+							avatar: image.userImageURL ? image.userImageURL : BDT_AI_IMG.assets_url + 'imgs/avatar-human.svg',
+							profile: image.userURL
+						}
 					});
 				});
 
@@ -177,9 +186,8 @@
 
 						<div class="aiImg-content-wrap">
 							<a href="#" class="aiImg-author-wrap">
-								<img src="https://images.pexels.com/users/avatars/748453803/alexander-mass-974.jpeg?auto=compress&fit=crop&h=130&w=130&dpr=1"
-									class="aiImg-author-img" alt="Tomáš Malík">
-								<span class="aiImg-author-name">Tomáš Malík</span>
+								<img src="${image.user.avatar}" class="aiImg-author-img" alt="${image.user.name}">
+								<span class="aiImg-author-name">${image.user.name}</span>
 							</a>
 							<div class="aiImg-download-and-drop-wrap">
 						    	<button class="dropbtn aiImg-drop-btn bdt-aimg-download-btn-large bdt-aimg-download-btn" data-url="${image.src.large.url}">Download
@@ -399,6 +407,14 @@
 		}
 
 		App.init();
+
+
+		// $('button').on('click', function () {
+		// 	console.log('click');
+		// 	// $(this).parent().find('.download-button-content').toggleClass('active');
+		// 	// $(this).parent().addClass('active');
+		// });
+
 	});
 
 })(jQuery);

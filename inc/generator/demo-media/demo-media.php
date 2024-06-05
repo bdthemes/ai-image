@@ -15,7 +15,8 @@ function my_custom_media_tab_content() {
 		<div class="ai-image-tabs">
 			<div class="ai-image-tabs-search-wrap">
 				<ul class="ai-image-tabs__nav">
-					<li class="ai-image-tabs__nav-item active pexels" data-tab-target="pexels">Pexels</li>
+					<li class="ai-image-tabs__nav-item active openai" data-tab-target="openai">Open AI</li>
+					<li class="ai-image-tabs__nav-item pexels" data-tab-target="pexels">Pexels</li>
 					<li class="ai-image-tabs__nav-item pixabay" data-tab-target="pixabay">Pixabay</li>
 					<!-- <li class="ai-image-tabs__nav-item unsplash" data-tab-target="tab3">Unsplash</li> -->
 				</ul>
@@ -32,7 +33,12 @@ function my_custom_media_tab_content() {
 			</div>
 
 			<div class="ai-image-tabs__content">
-				<div class="ai-image-tabs__content-item active" id="pexels">
+				<div class="ai-image-tabs__content-item active" id="openai">
+					openai
+					<div id="openai-loaded-images" class="openai-loaded-images"></div>
+					<div id="openai-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
+				</div>
+				<div class="ai-image-tabs__content-item" id="pexels">
 					<div id="pixels-loaded-images" class="aiImg-loaded-images"></div>
 					<div id="pixels-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
 				</div>
