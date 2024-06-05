@@ -10,20 +10,20 @@
 		var search = '';
 		var searchMode = false;
 
-
 		const App = {
 			tabs: function () {
 				$(document).ready(function () {
 					$('.ai-image-tabs__nav-item').click(function () {
 						loading = false;
+						loading_pixabay = false;
 						var targetTab = $(this).data('tab-target');
 
-						if(targetTab === 'pixels') {
+						if (targetTab === 'pixels') {
 							App.loadPixelsImages();
 							console.log('pixels');
 						}
 
-						if(targetTab === 'pixabay') {
+						if (targetTab === 'pixabay') {
 							App.loadPixabayImages(false);
 							console.log('pixabay');
 						}
@@ -84,7 +84,7 @@
 				let output = [];
 
 				$.each(images, function (index, image) {
-					console.log(image);
+
 					output.push({
 						src: {
 							original: {
@@ -124,7 +124,6 @@
 					});
 				});
 
-				console.log(output);
 				return output;
 			},
 			renderDownloadBtns: function (sources) {
@@ -157,7 +156,6 @@
 
 				$.each(getImgData, function (index, image) {
 					let sources = image.src;
-
 					output += `
 					<div class="card">
 						<div class="aiImg-image-wrap">
@@ -182,7 +180,7 @@
 								<span class="aiImg-author-name">Tomáš Malík</span>
 							</a>
 							<div class="aiImg-download-and-drop-wrap">
-						    	<button class="dropbtn aiImg-drop-btn bdt-aimg-download-btn-large" data-url="${image.src.large}">Download
+						    	<button class="dropbtn aiImg-drop-btn bdt-aimg-download-btn-large bdt-aimg-download-btn" data-url="${image.src.large.url}">Download
 									<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
 									viewBox="0 0 24 24">
 									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -190,7 +188,7 @@
 									</svg>
 								</button>
 								<div class="download-button-dropdown">
-									<button class="dropbtn aiImg-drop-btn ai-image-drop-btn" data-url="${image.src.large}">
+									<button class="dropbtn aiImg-drop-btn ai-image-drop-btn" data-url="${image.src.large.url}">
 										<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
 											viewBox="0 0 24 24">
 											<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -261,8 +259,8 @@
 			},
 			loadPixabayImages: function (reset = false) {
 
-				if (loading) return;
-				loading = true;
+				if (loading_pixabay) return;
+				loading_pixabay = true;
 				console.log('loadPixabayImages');
 
 				// Show the loading indicator
@@ -277,7 +275,7 @@
 
 				if (searchMode) {
 					data.search = search;
-				}else{
+				} else {
 					data.search = 'nature';
 				}
 				console.log(data);
@@ -290,12 +288,7 @@
 				})
 					.then(response => response.json())
 					.then(response => {
-						console.log('outputX');
-						console.log(response);
 						let output = App.showImages(response, 'pixabay');
-
-						console.log('output');
-						console.log(output);
 
 						if (reset) {
 							document.getElementById('pixabay-loaded-images').innerHTML = output;
@@ -306,14 +299,14 @@
 						// Hide the loading indicator
 						document.getElementById('pixabay-loading-indicator').style.display = 'none';
 
-						loading = false;
+						loading_pixabay = false;
 						page++;
 					})
 					.catch(() => {
 						// Hide the loading indicator
 						document.getElementById('pixabay-loading-indicator').style.display = 'none';
 
-						loading = false;
+						loading_pixabay = false;
 					});
 
 
@@ -321,6 +314,13 @@
 			checkScroll: function () {
 				if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
 					App.loadPixelsImages();
+					App.loadPixabayImages();
+
+					if ($('.ai-image-tabs__nav .ai-image-tabs__nav-item.pexels').hasClass('active')) {
+						App.loadPixelsImages();
+					} else {
+						App.loadPixabayImages();
+					}
 				}
 			},
 			searchForm: function () {
@@ -375,9 +375,6 @@
 				/**
 				 * /Layout
 				 */
-
-				// App.loadPixelsImages();
-				// App.loadPixabayImages();
 				App.load_images_default();
 
 				$(window).on('scroll', App.checkScroll);
