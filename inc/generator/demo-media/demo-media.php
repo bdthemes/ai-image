@@ -20,9 +20,8 @@ function my_custom_media_tab_content() {
 					<!-- <li class="ai-image-tabs__nav-item unsplash" data-tab-target="tab3">Unsplash</li> -->
 				</ul>
 
-				<form id="pixels-search-form" class="ai-image-search">
-					<input type="text" id="pixels-search-input" placeholder="Search for images">
-					<!-- <input type="submit" value="Search"> -->
+				<form id="aiImage-search-form" class="ai-image-search">
+					<input type="text" id="aiImage-search-input" placeholder="Search for images">
 					<button type="submit" >
 						<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
 						<path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
@@ -34,40 +33,20 @@ function my_custom_media_tab_content() {
 
 			<div class="ai-image-tabs__content">
 				<div class="ai-image-tabs__content-item active" id="pexels">
-					<!-- <h3>Pixel Images</h3> -->
-					<!-- <form id="pixels-search-form">
-						<input type="text" id="pixels-search-input" placeholder="Search for images">
-						<input type="submit" value="Search">
-					</form> -->
-
 					<div id="pixels-loaded-images" class="aiImg-loaded-images"></div>
 					<div id="pixels-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
 				</div>
 				<div class="ai-image-tabs__content-item" id="pixabay">
-					<!-- <h3>Pixabay Images</h3>
-					<form id="pixabay-search-form">
-						<input type="text" id="pixabay-search-input" placeholder="Search for images">
-						<input type="submit" value="Search">
-					</form> -->
-
 					<div id="pixabay-loaded-images" class="aiImg-loaded-images"></div>
 					<div id="pixabay-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
 				</div>
 				<div class="ai-image-tabs__content-item" id="tab3">
-					<h3>Unsplash Images</h3>
-					<form id="unsplash-search-form">
-						<input type="text" id="unsplash-search-input" placeholder="Search for images">
-						<input type="submit" value="Search">
-					</form>
-
 					<div id="unsplash-loaded-images" class="aiImg-loaded-images"></div>
 					<div id="unsplash-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
 				</div>
 			</div>
 		</div>
-
 	</div>
-
 	<?php
 }
 

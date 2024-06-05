@@ -4,11 +4,13 @@
 		const api_pixels = 'l7Pk56fQ7sjfslcgFBUXVuggY5sZ2EIRLtSvM1pBwLyzpIWjdQ93gVpH';
 		const api_pixabay = '27427772-5e3b7770787f4e0e591d5d2eb';
 		var page = 1;
+		var page_pixabay = 1;
 		var per_page = 15;
 		let loading = false;
 		var loading_pixabay = false;
 		var search = '';
 		var searchMode = false;
+		var searchMode_pixabay = false;
 
 		const App = {
 			tabs: function () {
@@ -266,14 +268,14 @@
 				// Show the loading indicator
 				document.getElementById('pixabay-loading-indicator').style.display = 'block';
 
-				var url = searchMode ? restURL + 'pixabay/search' : restURL + 'pixabay/search';
+				var url = searchMode_pixabay ? restURL + 'pixabay/search' : restURL + 'pixabay/search';
 				var data = {
 					api_key: api_pixabay,
-					page: page,
+					page: page_pixabay,
 					per_page: per_page
 				};
 
-				if (searchMode) {
+				if (searchMode_pixabay) {
 					data.search = search;
 				} else {
 					data.search = 'nature';
@@ -300,7 +302,7 @@
 						document.getElementById('pixabay-loading-indicator').style.display = 'none';
 
 						loading_pixabay = false;
-						page++;
+						page_pixabay++;
 					})
 					.catch(() => {
 						// Hide the loading indicator
@@ -324,12 +326,21 @@
 				}
 			},
 			searchForm: function () {
-				$('#pixels-search-form').on('submit', function (e) {
+				$('#aiImage-search-form').on('submit', function (e) {
 					e.preventDefault();
-					search = $('#pixels-search-input').val().trim();
+					search = $('#aiImage-search-input').val().trim();
 					page = 1;
-					searchMode = true;
-					App.loadPixelsImages(true);
+					page_pixabay = 1;
+
+					if($('.ai-image-tabs__nav .ai-image-tabs__nav-item.pexels').hasClass('active')){
+						App.loadPixelsImages(true);
+						searchMode = true;
+					}
+					else{
+						App.loadPixabayImages(true);
+						searchMode_pixabay = true;
+					}
+
 				});
 				$('#pixabay-search-form').on('submit', function (e) {
 					e.preventDefault();

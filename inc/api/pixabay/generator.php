@@ -23,6 +23,9 @@ class Generator {
 
         $response = wp_remote_get( $url );
 
+		// error_log( print_r( $url, true ) );
+		// error_log( print_r( $response, true ) );
+
         if ( is_wp_error( $response ) ) {
             return $response->get_error_message();
         }
@@ -30,6 +33,8 @@ class Generator {
         $body = wp_remote_retrieve_body( $response );
 
         $data = json_decode( $body );
+
+		// error_log( print_r( $data, true ) );
 
         return $data;
     }
