@@ -143,6 +143,48 @@
 
 				return output;
 			},
+			prepareOpenAiImages: function (images) {
+				let output = [];
+
+				$.each(images, function (index, image) {
+
+					output.push({
+						src: {
+							original: {
+								name: 'original',
+								url: image.url
+							},
+							large: {
+								name: 'large',
+								url: image.url
+							},
+							// medium: {
+							// 	name: 'medium',
+							// 	url: image.medium
+							// },
+							// small: {
+							// 	name: 'small',
+							// 	url: image.small
+							// },
+							tiny: {
+								name: 'tiny',
+								url: image.url
+							}
+						},
+						photographer: 'OpenAI',
+						photographer_url: 'https://openai.com/',
+						url: image.url,
+						thumbnail: image.output_url,
+						user: {
+							name: 'OpenAI',
+							avatar: BDT_AI_IMG.assets_url + 'imgs/avatar-human.svg',
+							profile: 'https://openai.com/'
+						}
+					});
+				});
+
+				return output;
+			},
 			renderDownloadBtns: function (sources) {
 				let downloadBtns = '';
 				for (let key in sources) {
@@ -161,6 +203,11 @@
 			showImages: function (imgData, type) {
 				let output = '';
 				let getImgData = [];
+
+				if('openai' === type) {
+					getImgData = App.prepareOpenAiImages(imgData);
+				}
+
 				if ('pexels' === type) {
 					getImgData = App.preparePexelsImages(imgData);
 				}
@@ -178,7 +225,7 @@
 						<div class="aiImg-image-wrap">
 							<img src="${image.src.large.url}" class="card-img-top" alt="${image.photographer}">
 							<div class="aiImg-download-view-wrap">
-								<a href="https://www.pexels.com/photo/steam-and-barren-hills-landscape-24778776/" target="_blank"
+								<a href="${image.url}" target="_blank"
 									title="View More" class="dropbtn aiImg-view-btn">
 									<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
 										viewBox="0 0 24 24">
@@ -324,8 +371,24 @@
 
 						loading_pixabay = false;
 					});
-
-
+			},
+			loadOpenAI: function () {
+				let url = restURL + 'openai/images/generations?prompt=' + search + '&n=2&method=generator';
+				fetch(url, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+					.then(response => response.json())
+					.then(response => {
+						console.log(response);
+						let output = App.showImages(response.data, 'openai');
+						document.getElementById('openai-loaded-images').innerHTML += output;
+					})
+					.catch(() => {
+						console.log('error');
+					});
 			},
 			checkScroll: function () {
 				if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
@@ -334,7 +397,7 @@
 
 					if ($('.ai-image-tabs__nav .ai-image-tabs__nav-item.pexels').hasClass('active')) {
 						App.loadPexelsImages();
-					} else if($('.ai-image-tabs__nav .ai-image-tabs__nav-item.pixabay').hasClass('active')) {
+					} else if ($('.ai-image-tabs__nav .ai-image-tabs__nav-item.pixabay').hasClass('active')) {
 						App.loadPixabayImages();
 					}
 				}
@@ -346,22 +409,17 @@
 					page = 1;
 					page_pixabay = 1;
 
-					if($('.ai-image-tabs__nav .ai-image-tabs__nav-item.pexels').hasClass('active')){
+					if ($('.ai-image-tabs__nav .ai-image-tabs__nav-item.openai').hasClass('active')) {
+						App.loadOpenAI();
+					}
+					if ($('.ai-image-tabs__nav .ai-image-tabs__nav-item.pexels').hasClass('active')) {
 						App.loadPexelsImages(true);
 						searchMode = true;
 					}
-					if ($('.ai-image-tabs__nav .ai-image-tabs__nav-item.pixabay').hasClass('active')){
+					if ($('.ai-image-tabs__nav .ai-image-tabs__nav-item.pixabay').hasClass('active')) {
 						App.loadPixabayImages(true);
 						searchMode_pixabay = true;
 					}
-
-				});
-				$('#pixabay-search-form').on('submit', function (e) {
-					e.preventDefault();
-					search = $('#pixabay-search-input').val().trim();
-					page = 1;
-					searchMode = true;
-					App.loadPixabayImages(true);
 				});
 			},
 			downLoad: function (img) {
@@ -391,6 +449,7 @@
 			load_images_default: function () {
 				// App.loadPexelsImages();
 				// App.loadPixabayImages();
+				// App.loadOpenAI();
 			},
 			init: function () {
 				/**

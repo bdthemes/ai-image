@@ -26,6 +26,7 @@ class BDTHEMES_OPENAI_REST_CONTROLLER extends WP_REST_CONTROLLER {
             'Authorization' => 'Bearer ' . $api_key,
             'Content-Type' => 'application/json',
         ];
+
         $body = [
             'prompt' => isset($paramaters['prompt']) ? $paramaters['prompt'] : 'A beautiful sunset over the city',
             'n' => isset($paramaters['number']) ? (int) $paramaters['number'] : 4,
@@ -33,6 +34,17 @@ class BDTHEMES_OPENAI_REST_CONTROLLER extends WP_REST_CONTROLLER {
             'response_format' => 'b64_json',
             'user' => strval(get_current_user_id()),
         ];
+
+		if( isset( $paramaters['method'] ) && $paramaters['method'] == 'generator' ) {
+			$body = [
+				'prompt' => isset( $paramaters['prompt'] ) ? $paramaters['prompt'] : 'A beautiful sunset over the city',
+				'n'      => isset( $paramaters['number'] ) ? (int) $paramaters['number'] : 4,
+				'size'   => isset( $paramaters['size'] ) ? (string) $paramaters['size'] : '512x512',
+				'user'   => strval( get_current_user_id() ),
+			];
+		}
+
+
         $args = [
             'headers' => $headers,
             'body' => json_encode($body),
@@ -46,7 +58,7 @@ class BDTHEMES_OPENAI_REST_CONTROLLER extends WP_REST_CONTROLLER {
         return  $response;
     }
     public function image_generation_permission_check() {
-		return true;
+		return true; //todo: change this to a proper permission check
         return current_user_can('edit_posts');
     }
     private function get_openai_api_key() {

@@ -29,13 +29,11 @@ function my_custom_media_tab_content() {
 						</svg>
 					</button>
 				</form>
-
 			</div>
 
 			<div class="ai-image-tabs__content">
 				<div class="ai-image-tabs__content-item active" id="openai">
-					openai
-					<div id="openai-loaded-images" class="openai-loaded-images"></div>
+					<div id="openai-loaded-images" class="aiImg-loaded-images"></div>
 					<div id="openai-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
 				</div>
 				<div class="ai-image-tabs__content-item" id="pexels">
