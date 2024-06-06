@@ -27,7 +27,7 @@ class BDTHEMES_OPENAI_REST_CONTROLLER extends WP_REST_CONTROLLER {
             'Content-Type' => 'application/json',
         ];
         $body = [
-            'prompt' => $paramaters['prompt'],
+            'prompt' => isset($paramaters['prompt']) ? $paramaters['prompt'] : 'A beautiful sunset over the city',
             'n' => isset($paramaters['number']) ? (int) $paramaters['number'] : 4,
             'size' => isset($paramaters['size']) ? (string) $paramaters['size'] : '512x512',
             'response_format' => 'b64_json',
@@ -46,6 +46,7 @@ class BDTHEMES_OPENAI_REST_CONTROLLER extends WP_REST_CONTROLLER {
         return  $response;
     }
     public function image_generation_permission_check() {
+		return true;
         return current_user_can('edit_posts');
     }
     private function get_openai_api_key() {

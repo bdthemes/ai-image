@@ -39,8 +39,8 @@ function my_custom_media_tab_content() {
 					<div id="openai-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
 				</div>
 				<div class="ai-image-tabs__content-item" id="pexels">
-					<div id="pixels-loaded-images" class="aiImg-loaded-images"></div>
-					<div id="pixels-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
+					<div id="pexels-loaded-images" class="aiImg-loaded-images"></div>
+					<div id="pexels-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
 				</div>
 				<div class="ai-image-tabs__content-item" id="pixabay">
 					<div id="pixabay-loaded-images" class="aiImg-loaded-images"></div>

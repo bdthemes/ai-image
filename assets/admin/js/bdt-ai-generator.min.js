@@ -1,7 +1,12 @@
 (function ($) {
 	$(document).ready(function () {
+
+		if (!$('.ai-image-tabs-search-wrap').length) {
+			return;
+		}
+
 		const restURL = BDT_AI_IMG.rest_url;
-		const api_pixels = 'l7Pk56fQ7sjfslcgFBUXVuggY5sZ2EIRLtSvM1pBwLyzpIWjdQ93gVpH';
+		const api_pexels = 'l7Pk56fQ7sjfslcgFBUXVuggY5sZ2EIRLtSvM1pBwLyzpIWjdQ93gVpH';
 		const api_pixabay = '27427772-5e3b7770787f4e0e591d5d2eb';
 		var page = 1;
 		var page_pixabay = 1;
@@ -19,10 +24,11 @@
 						loading = false;
 						loading_pixabay = false;
 						var targetTab = $(this).data('tab-target');
+						console.log(targetTab);
 
-						if (targetTab === 'pixels') {
-							App.loadPixelsImages();
-							console.log('pixels');
+						if (targetTab === 'pexels') {
+							App.loadPexelsImages();
+							console.log('pexels');
 						}
 
 						if (targetTab === 'pixabay') {
@@ -38,7 +44,7 @@
 					});
 				});
 			},
-			preparePixelsImages: function (images) {
+			preparePexelsImages: function (images) {
 				var output = [];
 
 				$.each(images, function (index, image) {
@@ -155,8 +161,8 @@
 			showImages: function (imgData, type) {
 				let output = '';
 				let getImgData = [];
-				if ('pixels' === type) {
-					getImgData = App.preparePixelsImages(imgData);
+				if ('pexels' === type) {
+					getImgData = App.preparePexelsImages(imgData);
 				}
 
 				if ('pixabay' === type) {
@@ -218,16 +224,16 @@
 
 				return output;
 			},
-			loadPixelsImages: function (reset = false) {
+			loadPexelsImages: function (reset = false) {
 				if (loading) return;
 				loading = true;
 
 				// Show the loading indicator
-				document.getElementById('pixels-loading-indicator').style.display = 'block';
+				document.getElementById('pexels-loading-indicator').style.display = 'block';
 
 				var url = searchMode ? restURL + 'pexels/search' : restURL + 'pexels/curated';
 				var data = {
-					api_key: api_pixels,
+					api_key: api_pexels,
 					page: page,
 					per_page: per_page
 				};
@@ -246,23 +252,23 @@
 					.then(response => response.json())
 					.then(response => {
 
-						var output = App.showImages(response, 'pixels');
+						var output = App.showImages(response, 'pexels');
 
 						if (reset) {
-							document.getElementById('pixels-loaded-images').innerHTML = output;
+							document.getElementById('pexels-loaded-images').innerHTML = output;
 						} else {
-							document.getElementById('pixels-loaded-images').insertAdjacentHTML('beforeend', output);
+							document.getElementById('pexels-loaded-images').insertAdjacentHTML('beforeend', output);
 						}
 
 						// Hide the loading indicator
-						document.getElementById('pixels-loading-indicator').style.display = 'none';
+						document.getElementById('pexels-loading-indicator').style.display = 'none';
 
 						loading = false;
 						page++;
 					})
 					.catch(() => {
 						// Hide the loading indicator
-						document.getElementById('pixels-loading-indicator').style.display = 'none';
+						document.getElementById('pexels-loading-indicator').style.display = 'none';
 
 						loading = false;
 					});
@@ -323,12 +329,12 @@
 			},
 			checkScroll: function () {
 				if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-					App.loadPixelsImages();
-					App.loadPixabayImages();
+					// App.loadPexelsImages();
+					// App.loadPixabayImages();
 
 					if ($('.ai-image-tabs__nav .ai-image-tabs__nav-item.pexels').hasClass('active')) {
-						App.loadPixelsImages();
-					} else {
+						App.loadPexelsImages();
+					} else if($('.ai-image-tabs__nav .ai-image-tabs__nav-item.pixabay').hasClass('active')) {
 						App.loadPixabayImages();
 					}
 				}
@@ -341,10 +347,10 @@
 					page_pixabay = 1;
 
 					if($('.ai-image-tabs__nav .ai-image-tabs__nav-item.pexels').hasClass('active')){
-						App.loadPixelsImages(true);
+						App.loadPexelsImages(true);
 						searchMode = true;
 					}
-					else{
+					if ($('.ai-image-tabs__nav .ai-image-tabs__nav-item.pixabay').hasClass('active')){
 						App.loadPixabayImages(true);
 						searchMode_pixabay = true;
 					}
@@ -383,7 +389,7 @@
 				});
 			},
 			load_images_default: function () {
-				App.loadPixelsImages();
+				// App.loadPexelsImages();
 				// App.loadPixabayImages();
 			},
 			init: function () {
