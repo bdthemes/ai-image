@@ -248,7 +248,7 @@
 									viewBox="0 0 24 24">
 									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
 										d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4" />
-									</svg>
+							    	</svg>
 								</button>
 								<div class="download-button-dropdown">
 									<button class="dropbtn aiImg-drop-btn ai-image-drop-btn" data-url="${image.src.large.url}">

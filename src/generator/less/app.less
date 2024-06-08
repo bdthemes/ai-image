@@ -40,6 +40,10 @@ div#pixels-loading-indicator {
   margin: 0;
   font-weight: 600;
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  gap: 10px;
   &.active {
     color: #000;
     background-color: #ffffff;
@@ -49,6 +53,14 @@ div#pixels-loading-indicator {
   }
   &:last-child {
     border-top-right-radius: 6px;
+  }
+  span {
+    display: none;
+  }
+  svg {
+      width: 28px;
+      height: 28px;
+      display: block;
   }
 }
 
@@ -177,6 +189,7 @@ div#pixels-loading-indicator {
   opacity: 0;
   transform: translateY(10px);
   transition: opacity .3s ease, transform .3s ease;
+  gap: 5px;
 }
 
 .aiImg-author-wrap {
@@ -199,6 +212,12 @@ div#pixels-loading-indicator {
     }
     &:hover {
       color: #fff;
+    }
+    .aiImg-author-name {
+      white-space: nowrap;
+      width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 }
 
@@ -224,6 +243,15 @@ div#pixels-loading-indicator {
     opacity: 0;
     transition: opacity .3s ease, transform .3s ease;
 }
+
+.download-button-dropdown {
+  .dropbtn {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+}
+
     .dropbtn {
       background-color: rgba(255, 255, 255, 0.929);
       color: #3c3636;
@@ -237,7 +265,7 @@ div#pixels-loading-indicator {
           width: 20px;
           height: 20px;
           display: block;
-          transform: rotate(180deg);
+          // transform: rotate(180deg);
         }
         &:hover {
             background-color: rgba(255, 255, 255, 0.805);
@@ -344,7 +372,7 @@ div#pixels-loading-indicator {
       columns: 2;
   }
   .ai-image-tabs__nav-item {
-    padding: 20px 30px;
+    padding: 16px 22px;
   }
   .ai-image-search {
     width: auto;
@@ -359,6 +387,11 @@ div#pixels-loading-indicator {
   .ai-image-tabs-search-wrap {
     flex-direction: row;
     align-items: center;
+  }
+  .ai-image-tabs__nav-item {
+    span {
+      display: block;
+    }
   }
 }
 
