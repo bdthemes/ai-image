@@ -374,6 +374,7 @@
 			},
 			loadOpenAI: function () {
 				$('#openai-loading-indicator').show();
+				document.getElementById('openai-loaded-images').innerHTML = '';
 				let url = restURL + 'openai/images/generations?prompt=' + search + '&n=2&size=1024x1024&method=generator';
 				fetch(url, {
 					method: 'POST',
