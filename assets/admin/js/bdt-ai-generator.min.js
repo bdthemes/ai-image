@@ -275,8 +275,7 @@
 				if (loading) return;
 				loading = true;
 
-				// Show the loading indicator
-				document.getElementById('pexels-loading-indicator').style.display = 'block';
+				$('#pexels-loading-indicator').show();
 
 				var url = searchMode ? restURL + 'pexels/search' : restURL + 'pexels/curated';
 				var data = {
@@ -298,6 +297,8 @@
 				})
 					.then(response => response.json())
 					.then(response => {
+
+						$('#pexels-loading-indicator').hide();
 
 						var output = App.showImages(response, 'pexels');
 
@@ -326,6 +327,8 @@
 				loading_pixabay = true;
 				console.log('loadPixabayImages');
 
+				$('#pixabay-loading-indicator').show();
+
 				// Show the loading indicator
 				document.getElementById('pixabay-loading-indicator').style.display = 'block';
 
@@ -352,12 +355,14 @@
 					.then(response => response.json())
 					.then(response => {
 						let output = App.showImages(response, 'pixabay');
+						$('#pixabay-loading-indicator').hide();
 
 						if (reset) {
 							document.getElementById('pixabay-loaded-images').innerHTML = output;
 						} else {
 							document.getElementById('pixabay-loaded-images').insertAdjacentHTML('beforeend', output);
 						}
+
 
 						// Hide the loading indicator
 						document.getElementById('pixabay-loading-indicator').style.display = 'none';
@@ -384,7 +389,13 @@
 				})
 					.then(response => response.json())
 					.then(response => {
-						console.log(response);
+
+						if(response.error) {
+							$('#openai-loading-indicator').hide();
+							alert(response.error.message);
+							return;
+						}
+
 						let output = App.showImages(response.data, 'openai');
 						document.getElementById('openai-loaded-images').innerHTML = output;
 						$('#openai-loading-indicator').hide();
@@ -411,6 +422,10 @@
 					search = $('#aiImage-search-input').val().trim();
 					page = 1;
 					page_pixabay = 1;
+
+					$('#openai-loaded-images').html('');
+					$('#pexels-loaded-images').html('');
+					$('#pixabay-loaded-images').html('');
 
 					if ($('.ai-image-tabs__nav .ai-image-tabs__nav-item.openai').hasClass('active')) {
 						App.loadOpenAI();
