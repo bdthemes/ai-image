@@ -48,7 +48,9 @@ function my_custom_media_tab_content() {
 
 			<div class="ai-image-tabs__content">
 				<div class="ai-image-tabs__content-item active" id="openai">
-					<div id="openai-loaded-images" class="aiImg-loaded-images"></div>
+					<div id="openai-loaded-images" class="aiImg-loaded-images">
+						Please search Image first.
+					</div>
 					<div id="openai-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
 				</div>
 				<div class="ai-image-tabs__content-item" id="pexels">
@@ -70,6 +72,54 @@ function my_custom_media_tab_content() {
 }
 
 function upload_image_to_wp() {
+	if ( ! isset( $_POST['image_url'] ) || empty( $_POST['image_url'] ) ) {
+		wp_send_json_error( 'No image URL provided.' );
+	}
+
+	$image_url  = esc_url_raw( $_POST['image_url'] );
+	$upload_dir = wp_upload_dir();
+
+	$image_data = file_get_contents( $image_url );
+	$filename   = basename( $image_url );
+
+	if ( strpos( $image_url, 'oaidalleapiprodscus.blob.core.windows.net/' ) !== false ) {
+		$wp_domain_name = get_site_url();
+		$wp_domain_name = str_replace( array( 'http://', 'https://' ), '', strtolower( $wp_domain_name ) );
+		$wp_domain_name = preg_replace( '/[^a-z0-9]/', '-', $wp_domain_name );
+		$filename = $wp_domain_name . '-' . time() . '.jpg';
+	}
+
+	// remove query string from filename
+	$filename = preg_replace( '/\?.*/', '', $filename );
+
+	if ( wp_mkdir_p( $upload_dir['path'] ) ) {
+		$file = $upload_dir['path'] . '/' . $filename;
+	} else {
+		$file = $upload_dir['basedir'] . '/' . $filename;
+	}
+
+	file_put_contents( $file, $image_data );
+
+	$wp_filetype = wp_check_filetype( $filename, null );
+	$attachment  = array(
+		'post_mime_type' => $wp_filetype['type'],
+		'post_title'     => sanitize_file_name( $filename ),
+		'post_content'   => '',
+		'post_status'    => 'inherit'
+	);
+
+	$attach_id = wp_insert_attachment( $attachment, $file );
+	require_once ( ABSPATH . 'wp-admin/includes/image.php' );
+	$attach_data = wp_generate_attachment_metadata( $attach_id, $file );
+	wp_update_attachment_metadata( $attach_id, $attach_data );
+
+	if ( $attach_id ) {
+		wp_send_json_success( array( 'attach_id' => $attach_id ) );
+	} else {
+		wp_send_json_error( 'Failed to upload image.' );
+	}
+}
+function __upload_image_to_wp() {
 	if ( ! isset( $_POST['image_url'] ) || empty( $_POST['image_url'] ) ) {
 		wp_send_json_error( 'No image URL provided.' );
 	}
