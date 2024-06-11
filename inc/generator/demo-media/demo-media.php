@@ -51,19 +51,19 @@ function my_custom_media_tab_content() {
 					<div id="openai-loaded-images" class="aiImg-loaded-images">
 						Please search Image first.
 					</div>
-					<div id="openai-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
+					<div id="openai-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading-2.gif"></div>
 				</div>
 				<div class="ai-image-tabs__content-item" id="pexels">
 					<div id="pexels-loaded-images" class="aiImg-loaded-images"></div>
-					<div id="pexels-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
+					<div id="pexels-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading-2.gif"></div>
 				</div>
 				<div class="ai-image-tabs__content-item" id="pixabay">
 					<div id="pixabay-loaded-images" class="aiImg-loaded-images"></div>
-					<div id="pixabay-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
+					<div id="pixabay-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading-2.gif"></div>
 				</div>
 				<div class="ai-image-tabs__content-item" id="tab3">
 					<div id="unsplash-loaded-images" class="aiImg-loaded-images"></div>
-					<div id="unsplash-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading (2).gif"></div>
+					<div id="unsplash-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading-2.gif"></div>
 				</div>
 			</div>
 		</div>
