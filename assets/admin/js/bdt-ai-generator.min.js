@@ -243,7 +243,7 @@
 								<span class="aiImg-author-name">${image.user.name}</span>
 							</a>
 							<div class="aiImg-download-and-drop-wrap">
-						    	<button class="dropbtn aiImg-drop-btn bdt-aimg-download-btn-large bdt-aimg-download-btn" data-url="${image.src.large.url}">Download
+						    	<button class="dropbtn aiImg-drop-btn bdt-aimg-download-btn-large bdt-aimg-download-btn" data-url="${image.src.large.url}">Import
 									<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
 									viewBox="0 0 24 24">
 									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -373,7 +373,8 @@
 					});
 			},
 			loadOpenAI: function () {
-				let url = restURL + 'openai/images/generations?prompt=' + search + '&n=2&method=generator';
+				$('#openai-loading-indicator').show();
+				let url = restURL + 'openai/images/generations?prompt=' + search + '&n=2&size=1024x1024&method=generator';
 				fetch(url, {
 					method: 'POST',
 					headers: {
@@ -384,7 +385,8 @@
 					.then(response => {
 						console.log(response);
 						let output = App.showImages(response.data, 'openai');
-						document.getElementById('openai-loaded-images').innerHTML += output;
+						document.getElementById('openai-loaded-images').innerHTML = output;
+						$('#openai-loading-indicator').hide();
 					})
 					.catch(() => {
 						console.log('error');
