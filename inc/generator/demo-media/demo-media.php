@@ -49,7 +49,7 @@ function my_custom_media_tab_content() {
 			<div class="ai-image-tabs__content">
 				<div class="ai-image-tabs__content-item active" id="openai">
 					<div id="openai-loaded-images" class="aiImg-loaded-images">
-						Please search Image first.
+						<span class="ai-image-notice-text">Please search Image first.</span>
 					</div>
 					<div id="openai-loading-indicator" style="display: none;"><img style="background-color: #fff;" src="<?php echo esc_url( BDT_AI_IMAGE_ASSETS ); ?>imgs/icons8-loading-2.gif"></div>
 				</div>
