@@ -1,7 +1,7 @@
 === AI Image Generator by ChatGPT ===
 Contributors: bdthemes, selimrana, abutalib, bdkoder
 Tags: openai, image, chatgpt, chatbot, ai, bdthemes
-Stable tag: 1.0.0
+Stable tag: 1.5.0
 Requires PHP: 7.0.0
 Requires at least: 5.0.0
 Tested up to: 6.4.2
@@ -25,5 +25,11 @@ https://youtu.be/WONhNWVXqvA
 Installation is fairly straight forward. Install it from the WordPress plugin repository.
 
 == Changelog ==
+
+= 1.5.0 [3rd July 2024] =
+
+* Added: Pixels Support added
+* Added: Pixabay Support added
+* Updated: System improved
 
 1.0.0 - Initial Release
