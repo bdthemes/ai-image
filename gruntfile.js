@@ -87,5 +87,11 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-build-number');
 
-	grunt.registerTask('default', ['less', 'rtlcss', 'concat', 'buildnumber', 'watch']);
+
+
+	if (process.env.NODE_ENV === "production") {
+		grunt.registerTask('default', ['less', 'rtlcss', 'concat', 'buildnumber']);
+	} else {
+		grunt.registerTask('default', ['less', 'rtlcss', 'concat', 'buildnumber', 'watch']);
+	}
 };

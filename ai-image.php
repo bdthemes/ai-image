@@ -4,7 +4,7 @@
  * Plugin Name: AI Image
  * Plugin URI: https://bdthemes.com
  * Description: AI Image blocks for WordPress Users to generate images using OpenAI API.
- * Version: 1.5.0
+ * Version: 1.5.1
  * Author: BdThemes
  * Author URI: https://bdthemes.com
  * License: GPLv3
@@ -12,7 +12,7 @@
  * Domain Path: /languages/
  */
 
-define( 'BDT_AI_IMAGE_VERSION', '1.5.0' );
+define( 'BDT_AI_IMAGE_VERSION', '1.5.1' );
 
 define( 'BDT_AI_IMAGE__FILE__', __FILE__ );
 define( 'BDT_AI_IMAGE_PATH', plugin_dir_path( BDT_AI_IMAGE__FILE__ ) );

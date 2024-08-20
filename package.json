@@ -1,6 +1,6 @@
 {
   "name": "ai-image",
-  "version": "1.0.0",
+  "version": "1.5.1",
   "description": "",
   "main": "build/blocks/index.js",
   "scripts": {
@@ -10,7 +10,9 @@
     "lint:js": "wp-scripts lint-js",
     "packages-update": "wp-scripts packages-update",
     "plugin-zip": "wp-scripts plugin-zip",
-    "start": "wp-scripts start"
+    "start": "wp-scripts start",
+    "clean": "rimraf ai-image",
+    "zip": "npm run && npm run clean && cross-env NODE_ENV=production grunt && rsync -av --exclude-from=.buildignore . ai-image && zip -r ai-image-v.$npm_package_version.zip ai-image/*"
   },
   "prettier": "@wordpress/prettier-config",
   "stylelint": {
@@ -30,6 +32,7 @@
     "grunt-contrib-concat": "^1.0.1"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "eslint-config-prettier": "^8.6.0",
     "grunt": "^1.6.1",
     "grunt-build-number": "^1.0.0",
@@ -40,7 +43,8 @@
     "grunt-contrib-watch": "^1.1.0",
     "grunt-rtlcss": "^2.0.2",
     "grunt-terser": "^2.0.0",
-    "jit-grunt": "^0.10.0"
+    "jit-grunt": "^0.10.0",
+    "npm-build-zip": "^1.0.3"
   },
-  "buildnum": "22"
+  "buildnum": "27"
 }
