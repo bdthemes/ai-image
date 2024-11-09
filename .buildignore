@@ -14,3 +14,10 @@ node_modules
 .git
 *zip
 .back.eslintrc
+.idea/
+Gruntfile.js
+less
+README.md
+.DS_Store
+postcss.config.js
+tailwind.config.js

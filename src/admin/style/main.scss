@@ -1,0 +1,69 @@
+#spin-wheel {
+  .app-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+  .spin-wheel-group-toggle {
+    gap: 1em;
+    button > div {
+      font-size: 22px;
+    }
+  }
+  .advanced-cond-input > div {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9fafb;
+    font-size: 14px;
+  }
+
+  .components-toggle-group-control {
+    background-color: #f9fafb;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    padding: 5px;
+  }
+  .components-toggle-group-control-option-base {
+    padding: 4px;
+  }
+  .spin-wheel-control-panel {
+    border-bottom: 0 !important;
+    .spin-wheel-ac-btn {
+      padding: 14px !important;
+      font-weight: 600 !important;
+      outline: none !important;
+      font-size: 14px !important;
+    }
+  }
+  .header-tab .shadow {
+    box-shadow: none;
+    background: #f5f6ff;
+    border: 2px solid #4e6af5;
+  }
+  .add_wc_coupon_wrapper {
+    display: none;
+  }
+}
+#spin-wheel-spinner {
+  canvas {
+    display: none !important;
+  }
+  canvas:first-child {
+    display: block !important;
+  }
+}
+
+.spin-wheel-enable-wc {
+  #coupons {
+    .spin-wheel-rep-add-btn {
+      display: none;
+    }
+    .add_wc_coupon_wrapper {
+      display: block;
+    }
+  }
+}
