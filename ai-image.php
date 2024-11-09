@@ -35,7 +35,7 @@ final class BDTHEMES_AI_IMAGE {
 	public function __construct() {
 
 		// block initialization
-		add_action( 'init', [ $this, 'blocks_init' ] );
+		// add_action( 'init', [ $this, 'blocks_init' ] );
 
 		// blocks category
 		if ( version_compare( $GLOBALS['wp_version'], '5.7', '<' ) ) {
