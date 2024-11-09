@@ -1,12 +1,13 @@
 import React from "react";
 
 const DownloadBtn = (props) => {
+	let { url } = props;
 	return (
 		<button
 			data-type={props.type}
 			download
 			className="btn btn-primary bdt-aimg-download-btn"
-			data-url="https://images.pexels.com/photos/29298929/pexels-photo-29298929.jpeg"
+			data-url={url}
 		>
 			<svg
 				aria-hidden="true"
