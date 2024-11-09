@@ -26,15 +26,15 @@ class Api {
 	 * @return boolean
 	 */
 	public function verify_request( $request ) {
-        /**
-         * Check if the request is coming from the same domain
-         */
+		/**
+		 * Check if the request is coming from the same domain
+		 */
 
-        $origin = $request->get_header( 'origin' );
+		$origin = $request->get_header( 'origin' );
 
-        if ( ! $origin ) {
-            return false;
-        }
+		if ( ! $origin ) {
+			return false;
+		}
 
 		return true;
 	}
@@ -60,32 +60,32 @@ class Api {
 		$parameters_data = $request->get_params();
 		$parameters      = isset( $parameters_data['data'] ) ? $parameters_data['data'] : $parameters_data;
 		$search          = isset( $parameters['search'] ) ? sanitize_text_field( $parameters['search'] ) : '';
-        $api_key         = isset( $parameters['api_key'] ) ? sanitize_text_field( $parameters['api_key'] ) : '';
-		$page = isset( $parameters['page'] ) ? absint( $parameters['page'] ) : 1;
-		$per_page = isset( $parameters['per_page'] ) ? absint( $parameters['per_page'] ) : 15;
+		$api_key         = isset( $parameters['api_key'] ) ? sanitize_text_field( $parameters['api_key'] ) : '';
+		$page            = isset( $parameters['page'] ) ? absint( $parameters['page'] ) : 1;
+		$per_page        = isset( $parameters['per_page'] ) ? absint( $parameters['per_page'] ) : 15;
 
-		if('/bdthemes/v1/pexels/curated' === $route) {
+		if ( '/bdthemes/v1/pexels/curated' === $route ) {
 			$search = 'curated';
 		}
 
-        if( empty( $search ) ) {
-            return new \WP_Error( 400, esc_html__( 'Search query is required', 'ai-image' ), array( 'status' => 400 ) );
-        }
+		if ( empty( $search ) ) {
+			return new \WP_Error( 400, esc_html__( 'Search query is required', 'ai-image' ), array( 'status' => 400 ) );
+		}
 
-        if( empty( $api_key ) ) {
-            return new \WP_Error( 400, esc_html__( 'API Key is required', 'ai-image' ), array( 'status' => 400 ) );
-        }
+		if ( empty( $api_key ) ) {
+			return new \WP_Error( 400, esc_html__( 'API Key is required', 'ai-image' ), array( 'status' => 400 ) );
+		}
 
-        /**
-         * Get Images
-         */
-        $images = Generator::get_images( $search, $api_key, $page, $per_page );
+		/**
+		 * Get Images
+		 */
+		$images = Generator::get_images( $search, $api_key, $page, $per_page );
 
-        if ( is_wp_error( $images ) ) {
-            return new \WP_Error( 400, esc_html__( 'Error fetching images', 'ai-image' ), array( 'status' => 400 ) );
-        }
+		if ( is_wp_error( $images ) ) {
+			return new \WP_Error( 400, esc_html__( 'Error fetching images', 'ai-image' ), array( 'status' => 400 ) );
+		}
 
-        return rest_ensure_response( $images );
+		return rest_ensure_response( $images );
 	}
 
 	/**

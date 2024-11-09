@@ -5,12 +5,12 @@ class BDTHEMES_OPENAI_ADMIN_SETTINGS_PAGE {
         add_action('admin_menu', [$this, 'add_openai_menu_page']);
     }
     public function add_openai_menu_page() {
-        add_options_page('AI Image', __('AI Image', 'ai-image'), 'manage_options', 'bdthemes-ai-image-options', [$this, 'create_admin_page']);
+        add_options_page('AI Image', esc_html__('AI Image', 'ai-image'), 'manage_options', 'bdthemes-ai-image-options', [$this, 'create_admin_page']);
     }
     public function create_admin_page() {
 ?>
         <div class="wrap">
-            <h1><?php _e('AI Image', 'ai-image'); ?></h1>
+            <h1><?php esc_attr_e('AI Image', 'ai-image'); ?></h1>
             <form method="post" action="options.php">
                 <?php
                 settings_fields('bdthemes-ai-image-options');
@@ -30,9 +30,9 @@ class BDTHEMES_OPENAI_ADMIN_SETTINGS_PAGE {
     public function openai_settings_section() {
     ?>
         <p>
-            <?php _e('Please enter your Openai API key. You can get your API key from <a href="https://beta.openai.com/account/api-keys" target="_blank">here</a>.', 'ai-image'); ?>
+            <?php esc_attr_e('Please enter your Openai API key. You can get your API key from <a href="https://beta.openai.com/account/api-keys" target="_blank">here</a>.', 'ai-image'); ?>
             <br>
-            <?php _e('Learn more about <a href="https://beta.openai.com/docs/developer-quickstart/your-api-keys" target="_blank">how to use OpenAI API</a>', 'ai-image'); ?>
+            <?php esc_attr_e('Learn more about <a href="https://beta.openai.com/docs/developer-quickstart/your-api-keys" target="_blank">how to use OpenAI API</a>', 'ai-image'); ?>
         </p>
 <?php
     }

@@ -450,7 +450,8 @@
 					method: 'POST',
 					data: {
 						action: 'upload_image_to_wp',
-						image_url: imageUrl
+						image_url: imageUrl,
+						nonce: BDT_AI_IMG.nonce
 					},
 					success: function (response) {
 						if (response.success) {

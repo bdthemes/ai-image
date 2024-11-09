@@ -1,6 +1,6 @@
 {
   "name": "ai-image",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "",
   "main": "build/blocks/index.js",
   "scripts": {
@@ -46,5 +46,5 @@
     "jit-grunt": "^0.10.0",
     "npm-build-zip": "^1.0.3"
   },
-  "buildnum": "27"
+  "buildnum": "30"
 }
