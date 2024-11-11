@@ -1,7 +1,7 @@
 === Instant Image Generator (One Click Image Uploads from Pixabay, Pexels and OpenAI) ===
 Contributors: bdthemes, selimrana, abutalib, bdkoder
 Tags: openai, image, chatgpt, freeimage, bdthemes
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 Requires PHP: 7.0.0
 Requires at least: 5.0.0
 Tested up to: 6.6.2
@@ -43,7 +43,13 @@ Installation is fairly straight forward. Install it from the WordPress plugin re
 
 == Changelog ==
 
-= 1.5.2 [20th August 2024] =
+= 1.5.3 [20th August 2024] =
+
+* Added: New system added
+
+* Fixed: Security issue fixed
+
+= 1.5.3 [20th August 2024] =
 
 * Fixed: Security issue fixed
 

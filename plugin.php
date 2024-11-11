@@ -139,6 +139,21 @@ final class Plugin {
 			$filename       = $wp_domain_name . '-' . time() . '.jpg';
 		}
 
+		// Check if the filename is more than 50 characters
+		if ( strlen( $filename ) > 50 ) {
+			$filename = substr( $filename, 0, 50 );
+		}
+
+		// If the image URL contains a real domain, rename the file using your own domain name
+		$parsed_url = parse_url( $image_url );
+		if ( isset( $parsed_url['host'] ) ) {
+			$domain         = preg_replace( '/[^a-z0-9]/', '-', strtolower( $parsed_url['host'] ) );
+			$wp_domain_name = get_site_url();
+			$wp_domain_name = str_replace( array( 'http://', 'https://' ), '', strtolower( $wp_domain_name ) );
+			$wp_domain_name = preg_replace( '/[^a-z0-9]/', '-', $wp_domain_name );
+			$filename       = $wp_domain_name . '-' . time() . '.jpg';
+		}
+
 		// Check if the upload directory exists
 		if ( wp_mkdir_p( $upload_dir['path'] ) ) {
 			$file_path = $upload_dir['path'] . '/' . $filename;
