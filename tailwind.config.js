@@ -15,6 +15,6 @@ module.exports = withMT({
   plugins: [
     flowbite.plugin()
   ],
-  important: '.wrap',
+	important: '.ai-image-wrap',
 })
 

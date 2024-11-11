@@ -181,6 +181,39 @@ final class Plugin {
 		wp_send_json_success( array( 'attach_id' => $attach_id ) );
 	}
 
+	/**
+	 * Media Sub Menu
+	 */
+	public function media_sub_menu() {
+		add_media_page( 'Image Generator', 'Image Generator', 'read', 'bdt-ai-media-tab', function () {
+			?>
+			<div class="wrap ai-image-wrap">
+				<h2 class="ai-image-title">Image Generator</h2>
+				<div id="ai-image-generator"></div>
+			</div>
+			<?php
+		} );
+	}
+
+	/**
+	 * Media upload tabs
+	 */
+	public function add_media_tab( $tabs ) {
+		$tabs['ai_image'] = __( 'Image Generator', 'ai-image' );
+		return $tabs;
+	}
+
+	public function media_tab_content() {
+		wp_iframe( array($this, 'media_tab_content_callback') );
+	}
+
+	public function media_tab_content_callback() {
+		?>
+		<div class="ai-image-wrap">
+			<div id="ai-image-generator"></div>
+		</div>
+		<?php
+	}
 
 	/**
 	 * Setup hooks.
@@ -188,14 +221,9 @@ final class Plugin {
 	 * @since 1.0.0
 	 */
 	private function setup_hooks() {
-		add_media_page( 'Image Generator', 'Image Generator', 'read', 'bdt-ai-media-tab', function () {
-			?>
-			<div class="wrap">
-				<h2 class="ai-image-title">Image Generator</h2>
-				<div id="ai-image-generator"></div>
-			</div>
-			<?php
-		} );
+		add_action( 'admin_menu', array( $this, 'media_sub_menu' ) );
+		add_filter( 'media_upload_tabs', array( $this, 'add_media_tab' ) );
+		add_action( 'media_upload_ai_image', array( $this, 'media_tab_content' ) );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ), 999 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ), 999 );

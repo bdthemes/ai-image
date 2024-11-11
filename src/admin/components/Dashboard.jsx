@@ -105,7 +105,6 @@ const Dashboard = () => {
 	}, []);
 	return (
 		<>
-			<div className="ai-image-dashboard">
 				<Tabs value="pixels" orientation="horizontal" className="flex-col">
 					<div class="flex gap-4">
 						<div class="w-[70%]">
@@ -136,7 +135,6 @@ const Dashboard = () => {
 						))}
 					</TabsBody>
 				</Tabs>
-			</div>
 		</>
 	);
 };
