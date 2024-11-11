@@ -4,6 +4,7 @@ import axios from "axios";
 // import Settings from "./includes/Settings";
 import Pixels from "./includes/Pixels";
 import Pixabay from "./includes/Pixabay";
+import OpenAIImageGenerator from "./includes/OpenAI";
 
 import {
 	Tabs,
@@ -28,10 +29,13 @@ const Dashboard = () => {
 			label: "Pixabay",
 			value: "pixabay",
 			desc: <Pixabay />,
-		}
+		},
+		{
+			label: "OpenAI",
+			value: "openai",
+			desc: <OpenAIImageGenerator />,
+		},
 	];
-
-
 	const uploadImage = async (imageUrl) => {
 		Swal.fire({
 			title: "Uploading...",
@@ -44,23 +48,32 @@ const Dashboard = () => {
 		});
 
 		try {
-			const response = await axios.post(AI_IMAGE_AdminConfig.ajax_url, {
-				action: 'upload_image_to_wp',
-				image_url: imageUrl,
-				nonce: AI_IMAGE_AdminConfig.nonce
+			const response = await fetch(AI_IMAGE_AdminConfig.ajax_url, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',  // For WordPress AJAX requests
+					'X-WP-Nonce': AI_IMAGE_AdminConfig.nonce,  // Add the nonce here
+				},
+				body: new URLSearchParams({
+					action: 'upload_image_to_wp',
+					image_url: imageUrl,
+					nonce: AI_IMAGE_AdminConfig.nonce,  // Send nonce for security
+				})
 			});
 
-			if (response.data.success) {
+			const data = await response.json();  // Parse the JSON response
+
+			if (response.ok && data.success) {
 				Swal.fire({
 					icon: 'success',
 					title: 'Image Uploaded Successfully',
-					text: `Attachment ID: ${response.data.data.attach_id}`
+					text: `Attachment ID: ${data.data.attach_id}`
 				});
 			} else {
 				Swal.fire({
 					icon: 'error',
 					title: 'Upload Failed',
-					text: response.data.data || 'An unknown error occurred.'
+					text: data.data || 'An unknown error occurred.'
 				});
 			}
 		} catch (error) {
@@ -72,15 +85,24 @@ const Dashboard = () => {
 		}
 	};
 
-	// Usage example
-	document.addEventListener('click', (event) => {
-		if (event.target.classList.contains('bdt-aimg-download-btn')) {
-			const imageUrl = event.target.dataset.url;
-			uploadImage(imageUrl);
-		}
-	});
 
 
+	useEffect(() => {
+		const handleGlobalClick = (event) => {
+			if (event.target.classList.contains('bdt-aimg-download-btn')) {
+				const imageUrl = event.target.getAttribute('data-url');
+				if (imageUrl) {
+					uploadImage(imageUrl);
+				}
+			}
+		};
+
+		document.addEventListener('click', handleGlobalClick);
+
+		return () => {
+			document.removeEventListener('click', handleGlobalClick);
+		};
+	}, []);
 	return (
 		<>
 			<div className="ai-image-dashboard">

@@ -9,92 +9,73 @@ const Pixels = () => {
 	const [images, setImages] = useState([]);
 	const [query, setQuery] = useState("");
 	const [page, setPage] = useState(1);
-	const [loading, setLoading] = useState(true); // Initial loading
-	const [scrollLoading, setScrollLoading] = useState(false); // Loading when scrolling bottom
+	const [loading, setLoading] = useState(true);
+	const [scrollLoading, setScrollLoading] = useState(false);
 	const [debouncedQuery, setDebouncedQuery] = useState(query);
 	const api_pexels = "l7Pk56fQ7sjfslcgFBUXVuggY5sZ2EIRLtSvM1pBwLyzpIWjdQ93gVpH";
 	const rest_url = "https://api.pexels.com/v1/";
 
-	// Determine if we are in search mode or curated mode
 	const searchMode = debouncedQuery.trim() !== "";
 
-	// Fetch images based on search query, page, and mode (search or curated)
 	const fetchImages = useCallback(async () => {
 		try {
-			// Set loading states based on page
 			if (page === 1) {
-				setLoading(true); // Show initial loading spinner
+				setLoading(true);
 			} else {
-				setScrollLoading(true); // Show scroll loading spinner
+				setScrollLoading(true);
 			}
 
-			// Determine URL based on search mode
 			const endpoint = searchMode ? "search" : "curated";
 			const url = `${rest_url}${endpoint}`;
 
-			// Set up parameters for the API request
 			const params = {
 				page,
 				per_page: 6,
-				...(searchMode && { query: debouncedQuery }) // Add query parameter if in search mode
+				...(searchMode && { query: debouncedQuery })
 			};
 
-			// Fetch data from Pexels API
 			const response = await axios.get(url, {
 				params,
 				headers: { Authorization: api_pexels },
 			});
 
-			// Update the image state with new images
 			if (response.data && response.data.photos) {
-				setImages((prevImages) => (page === 1 ? response.data.photos : [...prevImages, ...response.data.photos]));
+				setImages((prevImages) =>
+					page === 1 ? response.data.photos : [...prevImages, ...response.data.photos]
+				);
 			}
 		} catch (error) {
 			console.error("Error fetching images:", error);
 		} finally {
-			setLoading(false); // Hide initial loading spinner
-			setScrollLoading(false); // Hide scroll loading spinner
+			setLoading(false);
+			setScrollLoading(false);
 		}
 	}, [debouncedQuery, page, searchMode]);
 
-	// Trigger image fetch on mount and whenever the debounced query or page changes
 	useEffect(() => {
 		fetchImages();
 	}, [fetchImages]);
 
-	// Debounce the search input change
 	useEffect(() => {
 		const handler = setTimeout(() => {
 			setDebouncedQuery(query);
-			setPage(1); // Reset to the first page on new search
-		}, 500); // 500ms delay
+			setPage(1);
+		}, 500);
 
-		// Clean up the timeout if query changes before the delay is over
 		return () => clearTimeout(handler);
 	}, [query]);
 
-	// Handle search input changes
 	const handleSearch = (e) => {
 		setQuery(e.target.value);
 	};
 
-	// Infinite scroll to load more images when scrolling to the bottom of the page
-	const handleScroll = useCallback(() => {
-		const isBottom = window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 10;
-
-		if (isBottom && !scrollLoading && !loading) {
-			setPage((prevPage) => prevPage + 1); // Load next page
-		}
-	}, [scrollLoading, loading]);
-
-	useEffect(() => {
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, [handleScroll]);
+	// Function to load more images when the button is clicked
+	const loadMore = () => {
+		setPage((prevPage) => prevPage + 1); // Increase page number to load more images
+	};
 
 	return (
 		<div>
-			{/* Search bar */}
 			<div className="ai-image-search mb-8">
 				<input
 					value={query}
@@ -103,13 +84,12 @@ const Pixels = () => {
 					placeholder="Search images..."
 				/>
 				<button type="submit">
-					<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-						<path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"></path>
+					<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width={24} height={24} fill="none" viewBox="0 0 24 24">
+						<path stroke="currentColor" strokeLinecap="round" strokeWidth={2} d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"></path>
 					</svg>
 				</button>
 			</div>
 
-			{/* Loading indicator on initial load */}
 			{loading ? (
 				<p>Loading...</p>
 			) : (
@@ -121,6 +101,7 @@ const Pixels = () => {
 									src={image.src.medium}
 									className="card-img-top w-full h-full object-cover"
 									alt={image.alt}
+									loading="lazy" // Lazy load the image
 								/>
 								<Preview url={image.url} />
 							</div>
@@ -134,20 +115,8 @@ const Pixels = () => {
 									<ImportBtn url={image.src.medium} />
 									<div className="download-button-dropdown">
 										<button className="dropbtn aiImg-drop-btn ai-image-drop-btn">
-											<svg
-												aria-hidden="true"
-												xmlns="http://www.w3.org/2000/svg"
-												width={24}
-												height={24}
-												fill="none"
-												viewBox="0 0 24 24">
-												<path
-													stroke="currentColor"
-													strokeLinecap="round"
-													strokeLinejoin="round"
-													strokeWidth={2}
-													d="m19 9-7 7-7-7"
-												/>
+											<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width={24} height={24} fill="none" viewBox="0 0 24 24">
+												<path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m19 9-7 7-7-7" />
 											</svg>
 										</button>
 										<div className="download-button-content">
@@ -165,7 +134,15 @@ const Pixels = () => {
 				</div>
 			)}
 
-			{/* Loading indicator for additional data when scrolling */}
+			{/* Load More Button */}
+			{!loading && !scrollLoading && (
+				<div className="text-center mt-8">
+					<button onClick={loadMore} className="btn btn-primary">
+						Load More
+					</button>
+				</div>
+			)}
+
 			{scrollLoading && <p>Loading more images...</p>}
 		</div>
 	);

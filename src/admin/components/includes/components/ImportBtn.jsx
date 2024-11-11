@@ -6,7 +6,7 @@ const ImportBtn = (props) => {
 	return (
 		<button
 			className="dropbtn aiImg-drop-btn bdt-aimg-download-btn-large bdt-aimg-download-btn"
-			data-url="https://images.pexels.com/photos/29298929/pexels-photo-29298929.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+			data-url={url}
 		>
 			Import
 			<svg

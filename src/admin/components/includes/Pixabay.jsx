@@ -66,19 +66,10 @@ const Pixabay = () => {
 		setQuery(e.target.value);
 	};
 
-	// Infinite scroll to load more images when scrolling to the bottom of the page
-	const handleScroll = useCallback(() => {
-		const isBottom = window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 10;
-
-		if (isBottom && !scrollLoading && !loading) {
-			setPage((prevPage) => prevPage + 1); // Load next page
-		}
-	}, [scrollLoading, loading]);
-
-	useEffect(() => {
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, [handleScroll]);
+	// Load more images when the button is clicked
+	const loadMoreImages = () => {
+		setPage((prevPage) => prevPage + 1); // Load next page
+	};
 
 	return (
 		<div>
@@ -151,8 +142,14 @@ const Pixabay = () => {
 				</div>
 			)}
 
-			{/* Loading indicator for additional data when scrolling */}
-			{scrollLoading && <p>Loading more images...</p>}
+			{/* Load More button */}
+			{!loading && (
+				<div className="text-center mt-8">
+					<button onClick={loadMoreImages} disabled={scrollLoading} className="load-more-btn">
+						{scrollLoading ? "Loading more images..." : "Load More"}
+					</button>
+				</div>
+			)}
 		</div>
 	);
 };

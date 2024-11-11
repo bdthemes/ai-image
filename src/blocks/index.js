@@ -2,4 +2,4 @@
  * Includes all blocks root files
  */
 
-import './blocks/image-generator/index';
+import './image-generator/index';
