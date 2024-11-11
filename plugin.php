@@ -199,7 +199,7 @@ final class Plugin {
 	 * Media upload tabs
 	 */
 	public function add_media_tab( $tabs ) {
-		$tabs['ai_image'] = __( 'Image Generator', 'ai-image' );
+		$tabs['ai_image'] = __( 'Image Generator 🪄', 'ai-image' );
 		return $tabs;
 	}
 
@@ -209,7 +209,7 @@ final class Plugin {
 
 	public function media_tab_content_callback() {
 		?>
-		<div class="ai-image-wrap">
+		<div class="ai-image-wrap ai-image-media-modal">
 			<div id="ai-image-generator"></div>
 		</div>
 		<?php
