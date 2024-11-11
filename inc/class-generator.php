@@ -17,9 +17,9 @@ class Generator {
 		 */
 		require_once __DIR__ . '/api/init.php';
 
-		if ( is_admin() ) {
-			require_once __DIR__ . '/generator/demo-media/demo-media.php';
-		}
+		// if ( is_admin() ) {
+		// 	require_once __DIR__ . '/generator/demo-media/demo-media.php';
+		// }
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
