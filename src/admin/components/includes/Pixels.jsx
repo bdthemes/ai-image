@@ -30,7 +30,7 @@ const Pixels = () => {
 
 			const params = {
 				page,
-				per_page: 6,
+				per_page: 12,
 				...(searchMode && { query: debouncedQuery })
 			};
 
@@ -137,7 +137,7 @@ const Pixels = () => {
 			{/* Load More Button */}
 			{!loading && !scrollLoading && (
 				<div className="text-center mt-8">
-					<button onClick={loadMore} className="btn btn-primary">
+					<button onClick={loadMore} className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
 						Load More
 					</button>
 				</div>

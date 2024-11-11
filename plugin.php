@@ -93,10 +93,12 @@ final class Plugin {
 	 */
 	public function upload_image_to_wp() {
 
+		// Verify nonce for security
 		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'ai_img_nonce' ) ) {
 			wp_send_json_error( array( 'message' => 'Invalid nonce.' ) );
 		}
 
+		// Check if image URL is provided
 		if ( ! isset( $_POST['image_url'] ) || empty( $_POST['image_url'] ) ) {
 			wp_send_json_error( array( 'message' => 'No image URL provided.' ) );
 		}
@@ -104,42 +106,32 @@ final class Plugin {
 		$image_url  = esc_url_raw( wp_unslash( $_POST['image_url'] ) );
 		$upload_dir = wp_upload_dir();
 
-		// Try fetching the image
-		$response = wp_remote_get( $image_url, array(
-			'timeout' => 60,
-		) );
+		// Fetch the image from the URL
+		$response = wp_remote_get( $image_url, array( 'timeout' => 60 ) );
 
-		// Check if there was a WP error with the request
+		// Check if the request failed
 		if ( is_wp_error( $response ) ) {
-			// Capture the error message and log it for further debugging
 			$error_message = $response->get_error_message();
-			// error_log( 'Failed to fetch image from URL: ' . $image_url . ' | Error: ' . $error_message );
-
-			// Send a JSON response indicating the error
 			wp_send_json_error( array( 'message' => 'Failed to fetch image.', 'error' => $error_message ) );
 		}
 
-		// If the fetch was successful, check for a valid response status
-		if ( is_array( $response ) && ! is_wp_error( $response ) ) {
-			$status_code = wp_remote_retrieve_response_code( $response );
-
-			// Check if the status code is 200 (success)
-			if ( $status_code === 200 ) {
-				// Successfully fetched the image, do something with it...
-				$body = wp_remote_retrieve_body( $response );
-				// Further processing of the image...
-				wp_send_json_success( array( 'message' => 'Image fetched successfully.' ) );
-			} else {
-				// Log the error if status code is not 200
-				// error_log( 'Failed to fetch image. HTTP Status Code: ' . $status_code );
-				wp_send_json_error( array( 'message' => 'Failed to fetch image. Status code: ' . $status_code ) );
-			}
+		// Check if the status code is 200 (success)
+		$status_code = wp_remote_retrieve_response_code( $response );
+		if ( $status_code !== 200 ) {
+			wp_send_json_error( array( 'message' => 'Failed to fetch image. Status code: ' . $status_code ) );
 		}
 
+		// Get the image data
 		$image_data = wp_remote_retrieve_body( $response );
-		$filename   = basename( $image_url );
+		if ( empty( $image_data ) ) {
+			wp_send_json_error( array( 'message' => 'Failed to retrieve image data.' ) );
+		}
 
-		// Optional filename transformation
+		// Determine filename and ensure there are no query parameters
+		$filename = basename( $image_url );
+		$filename = preg_replace( '/\?.*/', '', $filename );
+
+		// Optional transformation for special image URLs (e.g., DALL-E)
 		if ( strpos( $image_url, 'oaidalleapiprodscus.blob.core.windows.net/' ) !== false ) {
 			$wp_domain_name = get_site_url();
 			$wp_domain_name = str_replace( array( 'http://', 'https://' ), '', strtolower( $wp_domain_name ) );
@@ -147,45 +139,47 @@ final class Plugin {
 			$filename       = $wp_domain_name . '-' . time() . '.jpg';
 		}
 
-		// Remove query string from filename
-		$filename = preg_replace( '/\?.*/', '', $filename );
-
-		// Check if directory exists or create it
+		// Check if the upload directory exists
 		if ( wp_mkdir_p( $upload_dir['path'] ) ) {
-			$file = $upload_dir['path'] . '/' . $filename;
+			$file_path = $upload_dir['path'] . '/' . $filename;
 		} else {
-			$file = $upload_dir['basedir'] . '/' . $filename;
+			$file_path = $upload_dir['basedir'] . '/' . $filename;
 		}
 
-		// Attempt to write file to disk
-		$write_result = file_put_contents( $file, $image_data );
+		// Write the image data to the file
+		$write_result = file_put_contents( $file_path, $image_data );
 		if ( ! $write_result ) {
 			wp_send_json_error( array( 'message' => 'Failed to save image to disk.' ) );
 		}
 
+		// Check the file type
 		$wp_filetype = wp_check_filetype( $filename, null );
-		$attachment  = array(
+		if ( ! in_array( $wp_filetype['type'], array( 'image/jpeg', 'image/png', 'image/gif' ) ) ) {
+			wp_send_json_error( array( 'message' => 'Invalid image type.' ) );
+		}
+
+		// Create the attachment array for the image
+		$attachment = array(
 			'post_mime_type' => $wp_filetype['type'],
 			'post_title'     => sanitize_file_name( $filename ),
 			'post_content'   => '',
 			'post_status'    => 'inherit'
 		);
 
-		// Attempt to insert the attachment
-		$attach_id = wp_insert_attachment( $attachment, $file );
+		// Insert the attachment into the media library
+		$attach_id = wp_insert_attachment( $attachment, $file_path );
 		if ( ! $attach_id ) {
 			wp_send_json_error( array( 'message' => 'Failed to upload image.' ) );
 		}
 
-		// Generate attachment metadata
+		// Generate metadata for the attachment
 		require_once( ABSPATH . 'wp-admin/includes/image.php' );
-		$attach_data = wp_generate_attachment_metadata( $attach_id, $file );
+		$attach_data = wp_generate_attachment_metadata( $attach_id, $file_path );
 		wp_update_attachment_metadata( $attach_id, $attach_data );
 
-		// Send successful response
+		// Return success response
 		wp_send_json_success( array( 'attach_id' => $attach_id ) );
 	}
-
 
 
 	/**

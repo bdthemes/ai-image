@@ -2,7 +2,6 @@ import React from "react";
 
 const Preview = (props) => {
 	let { url } = props;
-	console.log(url);
 	return (
 		<>
 			<div className="aiImg-download-view-wrap">

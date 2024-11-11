@@ -21,7 +21,7 @@ const nonce = AI_IMAGE_AdminConfig.nonce; // WordPress nonce for security
 const Dashboard = () => {
 	const data = [
 		{
-			label: "Pixels",
+			label: 'Pixels',
 			value: "pixels",
 			desc: <Pixels />,
 		},

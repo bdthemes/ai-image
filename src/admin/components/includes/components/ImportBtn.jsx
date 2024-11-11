@@ -2,7 +2,6 @@ import React from "react";
 
 const ImportBtn = (props) => {
 	let { url } = props;
-	console.log(url);
 	return (
 		<button
 			className="dropbtn aiImg-drop-btn bdt-aimg-download-btn-large bdt-aimg-download-btn"

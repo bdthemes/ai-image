@@ -16,15 +16,10 @@ define( 'BDT_AI_IMAGE_VERSION', '1.5.2' );
 
 define( 'BDT_AI_IMAGE__FILE__', __FILE__ );
 define( 'BDT_AI_IMAGE_PATH', plugin_dir_path( BDT_AI_IMAGE__FILE__ ) );
-define( 'BDT_AI_IMAGE_INCLUDES', BDT_AI_IMAGE_PATH . 'inc/' );
 define( 'BDT_AI_IMAGE_URL', plugins_url( '/', BDT_AI_IMAGE__FILE__ ) );
 define( 'BDT_AI_IMAGE_ASSETS', BDT_AI_IMAGE_URL . 'assets/' );
 define( 'BDT_AI_IMAGE_PATH_NAME', basename( dirname( BDT_AI_IMAGE__FILE__ ) ) );
 define( 'BDT_AI_IMAGE_INC_PATH', BDT_AI_IMAGE_PATH . 'includes/' );
-
-add_action( 'init', function () {
-	require_once BDT_AI_IMAGE_INCLUDES . 'api/init.php';
-} );
 
 
 /**

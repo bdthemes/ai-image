@@ -29,7 +29,7 @@ const Pixabay = () => {
 					q: debouncedQuery,
 					image_type: "photo",
 					page,
-					per_page: 6,
+					per_page: 12,
 					pretty: true
 				}
 			});
