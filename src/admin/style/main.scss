@@ -399,14 +399,6 @@
 		padding: 16px 22px;
 	}
 
-	.ai-image-search {
-		width: auto;
-
-		input {
-			width: 300px;
-		}
-	}
-
 	.ai-image-tabs__content {
 		padding: 30px;
 	}
@@ -426,12 +418,6 @@
 @media (min-width: 1024px) {
 	.aiImg-loaded-images {
 		columns: 3;
-	}
-
-	.ai-image-search {
-		input {
-			width: 500px;
-		}
 	}
 
 	.ai-image-tabs__nav-item {

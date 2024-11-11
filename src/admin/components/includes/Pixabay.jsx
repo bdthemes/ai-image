@@ -5,49 +5,37 @@ import ImportBtn from "./components/ImportBtn";
 import Author from "./components/Author";
 import Preview from "./components/Preview";
 
-const Pixels = () => {
+const Pixabay = () => {
 	const [images, setImages] = useState([]);
-	const [query, setQuery] = useState("");
+	const [query, setQuery] = useState("nature");
 	const [page, setPage] = useState(1);
 	const [loading, setLoading] = useState(true); // Initial loading
 	const [scrollLoading, setScrollLoading] = useState(false); // Loading when scrolling bottom
 	const [debouncedQuery, setDebouncedQuery] = useState(query);
-	const api_pexels = "l7Pk56fQ7sjfslcgFBUXVuggY5sZ2EIRLtSvM1pBwLyzpIWjdQ93gVpH";
-	const rest_url = "https://api.pexels.com/v1/";
+	const api_pixabay = "27427772-5e3b7770787f4e0e591d5d2eb";
 
-	// Determine if we are in search mode or curated mode
-	const searchMode = debouncedQuery.trim() !== "";
-
-	// Fetch images based on search query, page, and mode (search or curated)
+	// Fetch images based on search query and page
 	const fetchImages = useCallback(async () => {
 		try {
-			// Set loading states based on page
 			if (page === 1) {
 				setLoading(true); // Show initial loading spinner
 			} else {
 				setScrollLoading(true); // Show scroll loading spinner
 			}
 
-			// Determine URL based on search mode
-			const endpoint = searchMode ? "search" : "curated";
-			const url = `${rest_url}${endpoint}`;
-
-			// Set up parameters for the API request
-			const params = {
-				page,
-				per_page: 6,
-				...(searchMode && { query: debouncedQuery }) // Add query parameter if in search mode
-			};
-
-			// Fetch data from Pexels API
-			const response = await axios.get(url, {
-				params,
-				headers: { Authorization: api_pexels },
+			const response = await axios.get(`https://pixabay.com/api/`, {
+				params: {
+					key: api_pixabay,
+					q: debouncedQuery,
+					image_type: "photo",
+					page,
+					per_page: 6,
+					pretty: true
+				}
 			});
 
-			// Update the image state with new images
-			if (response.data && response.data.photos) {
-				setImages((prevImages) => (page === 1 ? response.data.photos : [...prevImages, ...response.data.photos]));
+			if (response.data && response.data.hits) {
+				setImages((prevImages) => (page === 1 ? response.data.hits : [...prevImages, ...response.data.hits]));
 			}
 		} catch (error) {
 			console.error("Error fetching images:", error);
@@ -55,7 +43,7 @@ const Pixels = () => {
 			setLoading(false); // Hide initial loading spinner
 			setScrollLoading(false); // Hide scroll loading spinner
 		}
-	}, [debouncedQuery, page, searchMode]);
+	}, [debouncedQuery, page]);
 
 	// Trigger image fetch on mount and whenever the debounced query or page changes
 	useEffect(() => {
@@ -118,20 +106,20 @@ const Pixels = () => {
 						<div key={image.id} className="card ai-img-item">
 							<div className="aiImg-image-wrap w-full h-full">
 								<img
-									src={image.src.medium}
+									src={image.webformatURL}
 									className="card-img-top w-full h-full object-cover"
-									alt={image.alt}
+									alt={image.tags}
 								/>
-								<Preview url={image.url} />
+								<Preview url={image.pageURL} />
 							</div>
 							<div className="aiImg-content-wrap">
 								<Author
-									url={image.photographer_url}
-									avatar={image.photographer_avatar || "https://via.placeholder.com/130"}
-									name={image.photographer}
+									url={`https://pixabay.com/users/${image.user}-${image.user_id}`}
+									avatar={image.userImageURL || "https://via.placeholder.com/130"}
+									name={image.user}
 								/>
 								<div className="aiImg-download-and-drop-wrap">
-									<ImportBtn url={image.src.medium} />
+									<ImportBtn url={image.largeImageURL} />
 									<div className="download-button-dropdown">
 										<button className="dropbtn aiImg-drop-btn ai-image-drop-btn">
 											<svg
@@ -151,11 +139,9 @@ const Pixels = () => {
 											</svg>
 										</button>
 										<div className="download-button-content">
-											<DownloadBtn label="Original" type="original" url={image.src.original} />
-											<DownloadBtn label="Large" type="large" url={image.src.large} />
-											<DownloadBtn label="Medium" type="medium" url={image.src.medium} />
-											<DownloadBtn label="Small" type="small" url={image.src.small} />
-											<DownloadBtn label="Tiny" type="tiny" url={image.src.tiny} />
+											<DownloadBtn label="Large" type="large" url={image.largeImageURL} />
+											<DownloadBtn label="Medium" type="medium" url={image.webformatURL} />
+											<DownloadBtn label="Small" type="small" url={image.previewURL} />
 										</div>
 									</div>
 								</div>
@@ -171,4 +157,4 @@ const Pixels = () => {
 	);
 };
 
-export default Pixels;
+export default Pixabay;
