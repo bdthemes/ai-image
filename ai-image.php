@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Plugin Name: AI Image
+ * Plugin Name: Instant Image Generator (One Click Image Uploads from Pixabay, Pexels and OpenAI)
  * Plugin URI: https://bdthemes.com
- * Description: AI Image blocks for WordPress Users to generate images using OpenAI API.
- * Version: 1.5.3
+ * Description: Easily upload photos from Pixabay or Pexels directly to your website without ever leaving WordPress!
+ * Version: 1.5.4
  * Author: BdThemes
  * Author URI: https://bdthemes.com
  * License: GPLv3
@@ -12,7 +12,7 @@
  * Domain Path: /languages/
  */
 
-define( 'BDT_AI_IMAGE_VERSION', '1.5.3' );
+define( 'BDT_AI_IMAGE_VERSION', '1.5.4' );
 
 define( 'BDT_AI_IMAGE__FILE__', __FILE__ );
 define( 'BDT_AI_IMAGE_PATH', plugin_dir_path( BDT_AI_IMAGE__FILE__ ) );
@@ -28,17 +28,6 @@ define( 'BDT_AI_IMAGE_INC_PATH', BDT_AI_IMAGE_PATH . 'includes/' );
 
 final class BDTHEMES_AI_IMAGE {
 	public function __construct() {
-
-		// block initialization
-		// add_action( 'init', [ $this, 'blocks_init' ] );
-
-		// blocks category
-		if ( version_compare( $GLOBALS['wp_version'], '5.7', '<' ) ) {
-			add_filter( 'block_categories', [ $this, 'register_block_category' ], 10, 999999 );
-		} else {
-			add_filter( 'block_categories_all', [ $this, 'register_block_category' ], 10, 999999 );
-		}
-		// load plugin files
 		add_action( 'plugins_loaded', [ $this, 'load_files' ] );
 	}
 
@@ -64,38 +53,6 @@ final class BDTHEMES_AI_IMAGE {
 		if ( is_admin() ) {
 			require_once __DIR__ . '/admin/settings.php';
 		}
-	}
-
-	/**
-	 * Blocks Registration
-	 */
-
-	public function register_block( $name, $options = array() ) {
-		register_block_type( __DIR__ . '/build/blocks/' . $name, $options );
-	}
-
-	/**
-	 * Blocks Initialization
-	 */
-	public function blocks_init() {
-		// register single block
-		$this->register_block( 'image-generator' );
-	}
-
-	/**
-	 * Register Block Category
-	 */
-
-	public function register_block_category( $categories, $post ) {
-		return array_merge(
-			array(
-				array(
-					'slug'  => 'ai-image',
-					'title' => __( 'Ai image', 'ai-image' ),
-				),
-			),
-			$categories,
-		);
 	}
 }
 

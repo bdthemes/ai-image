@@ -2,13 +2,13 @@
 # This file is distributed under the GPLv3 license.
 msgid ""
 msgstr ""
-"Project-Id-Version: ai-image 1.5.2\n"
+"Project-Id-Version: ai-image 1.5.4\n"
 "Report-Msgid-Bugs-To: BdThemes <EMAIL>\n"
 "MIME-Version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"POT-Creation-Date: 2024-11-11T09:20:33.088Z\n"
+"POT-Creation-Date: 2024-11-13T03:39:43.751Z\n"
 "PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
 "Last-Translator: BdThemes <EMAIL>\n"
 "Language-Team: BdThemes <EMAIL>\n"
@@ -17,13 +17,10 @@ msgstr ""
 "domain: X-Domain: ai-image\n"
 
 #: ai-image.php
-#: admin/settings.php:8
-#: admin/settings.php:13
-#: src/blocks/image-generator/edit.js:86
-#: src/blocks/image-generator/edit.js:178
-#: src/blocks/image-generator/edit.js:248
 #. Name of the plugin
-msgid "AI Image"
+msgid ""
+"Instant Image Generator (One Click Image Uploads from Pixabay, Pexels and "
+"OpenAI)"
 msgstr ""
 
 #: ai-image.php
@@ -33,7 +30,9 @@ msgstr ""
 
 #: ai-image.php
 #. Description of the plugin
-msgid "AI Image blocks for WordPress Users to generate images using OpenAI API."
+msgid ""
+"Easily upload photos from Pixabay or Pexels directly to your website "
+"without ever leaving WordPress!"
 msgstr ""
 
 #: ai-image.php
@@ -45,8 +44,9 @@ msgstr ""
 msgid "Image Generator ??"
 msgstr ""
 
-#: ai-image.php:94
-msgid "Ai image"
+#: admin/settings.php:8
+#: admin/settings.php:13
+msgid "AI Image"
 msgstr ""
 
 #: admin/settings.php:27
@@ -65,85 +65,6 @@ msgid ""
 "Learn more about <a "
 "href=\"https://beta.openai.com/docs/developer-quickstart/your-api-keys\" "
 "target=\"_blank\">how to use OpenAI API</a>"
-msgstr ""
-
-#: src/blocks/image-generator/edit.js:72
-msgid "Please visit settings and input valid OpenAI token"
-msgstr ""
-
-#: src/blocks/image-generator/edit.js:98
-msgid "Visit Openai Settings"
-msgstr ""
-
-#: src/blocks/image-generator/edit.js:113
-#: src/blocks/image-generator/edit.js:184
-msgid "What would you like to see?"
-msgstr ""
-
-#: src/blocks/image-generator/edit.js:117
-msgid "Describe the image you would like to see, this is a required field"
-msgstr ""
-
-#: src/blocks/image-generator/edit.js:126
-#: src/blocks/image-generator/edit.js:196
-msgid "Number of images"
-msgstr ""
-
-#: src/blocks/image-generator/edit.js:128
-#: src/blocks/image-generator/edit.js:198
-msgid "Number of Generated Images: "
-msgstr ""
-
-#: src/blocks/image-generator/edit.js:139
-#: src/blocks/image-generator/edit.js:209
-msgid "Image size"
-msgstr ""
-
-#: src/blocks/image-generator/edit.js:141
-msgid "Generated Images Size: "
-msgstr ""
-
-#: src/blocks/image-generator/edit.js:147
-#: src/blocks/image-generator/edit.js:216
-msgid "Large"
-msgstr ""
-
-#: src/blocks/image-generator/edit.js:151
-#: src/blocks/image-generator/edit.js:220
-msgid "Medium"
-msgstr ""
-
-#: src/blocks/image-generator/edit.js:155
-#: src/blocks/image-generator/edit.js:224
-msgid "Small"
-msgstr ""
-
-#: src/blocks/image-generator/edit.js:172
-msgid "Retry"
-msgstr ""
-
-#: src/blocks/image-generator/edit.js:188
-msgid "Describe the image you would like to see"
-msgstr ""
-
-#: src/blocks/image-generator/edit.js:211
-msgid "Generated Image Size: "
-msgstr ""
-
-#: src/blocks/image-generator/edit.js:241
-msgid "Regenerate"
-msgstr ""
-
-#: src/blocks/image-generator/edit.js:242
-msgid "Generate"
-msgstr ""
-
-#: src/blocks/image-generator/edit.js:252
-msgid "Please choose your image"
-msgstr ""
-
-#: src/blocks/image-generator/edit.js:312
-msgid "AI Image is loading please wait?"
 msgstr ""
 
 #: src/admin/components/includes/Settings.jsx:166

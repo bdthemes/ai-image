@@ -145,7 +145,7 @@ final class Plugin {
 		}
 
 		// If the image URL contains a real domain, rename the file using your own domain name
-		$parsed_url = parse_url( $image_url );
+		$parsed_url = wp_parse_url( $image_url );
 		if ( isset( $parsed_url['host'] ) ) {
 			$domain         = preg_replace( '/[^a-z0-9]/', '-', strtolower( $parsed_url['host'] ) );
 			$wp_domain_name = get_site_url();
