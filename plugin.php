@@ -76,7 +76,7 @@ final class Plugin {
 
 		$script_config = array(
 			'ajax_url'   => admin_url( 'admin-ajax.php' ),
-			'nonce'      => wp_create_nonce( 'ai_img_nonce' ),
+			'nonce'      => wp_create_nonce( 'wp_rest' ),
 			'assets_url' => BDT_AI_IMAGE_ASSETS,
 			'rest_url'   => rest_url( 'bdthemes/v1/' ),
 		);
@@ -94,7 +94,7 @@ final class Plugin {
 	public function upload_image_to_wp() {
 
 		// Verify nonce for security
-		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'ai_img_nonce' ) ) {
+		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'wp_rest' ) ) {
 			wp_send_json_error( array( 'message' => 'Invalid nonce.' ) );
 		}
 
@@ -193,7 +193,10 @@ final class Plugin {
 		wp_update_attachment_metadata( $attach_id, $attach_data );
 
 		// Return success response
-		wp_send_json_success( array( 'attach_id' => $attach_id ) );
+		wp_send_json_success( array(
+			'attach_id'  => $attach_id,
+			'attach_url' => wp_get_attachment_url( $attach_id ),
+		) );
 	}
 
 	/**
@@ -219,7 +222,7 @@ final class Plugin {
 	}
 
 	public function media_tab_content() {
-		wp_iframe( array($this, 'media_tab_content_callback') );
+		wp_iframe( array( $this, 'media_tab_content_callback' ) );
 	}
 
 	public function media_tab_content_callback() {

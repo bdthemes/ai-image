@@ -92,11 +92,31 @@ const Dashboard = () => {
 
 			const data = await response.json();  // Parse the JSON response
 
+
+			/**
+			 * ai-img-copy-url click event
+			 */
+			document.addEventListener('click', (event) => {
+				if (event.target.classList.contains('ai-img-copy-url')) {
+					const input = event.target.nextElementSibling;
+					input.select();
+					document.execCommand('copy');
+					Swal.fire({
+						icon: 'success',
+						title: 'Image URL Copied',
+						text: 'The image URL has been copied to your clipboard.',
+					});
+				}
+			});
+
+
 			if (response.ok && data.success) {
 				Swal.fire({
 					icon: 'success',
 					title: 'Image Uploaded Successfully',
-					text: `Attachment ID: ${data.data.attach_id}`
+					// text: `Attachment ID: ${data.data.attach_id}`
+					//copy url button with icon - data.data.attach_url
+					html: `Copy URL: <div style="display: grid; justify-content: center;  gap: 8px;"><a href="javascript:void(0);" class="ai-img-copy-url">📋</a><input type="text" value="${data.data.attach_url}" readonly></div>`,
 				});
 
 				setTimeout(() => {

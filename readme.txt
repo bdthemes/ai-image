@@ -43,6 +43,12 @@ Installation is fairly straight forward. Install it from the WordPress plugin re
 
 == Changelog ==
 
+= 1.5.5 [XXth November 2024] =
+
+* Added: Image URL copy Button Added
+* Improved: Grid Layout Improved
+* Improved: Open AI Improved
+
 = 1.5.4 [13th November 2024] =
 
 * Added: New system added

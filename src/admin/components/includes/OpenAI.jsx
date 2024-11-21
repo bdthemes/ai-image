@@ -11,9 +11,35 @@ const OpenAIImageGenerator = () => {
 	const [loading, setLoading] = useState(false); // Loading state
 	const [error, setError] = useState(null); // Error state
 	const [debouncedQuery, setDebouncedQuery] = useState(query); // Debounced query to prevent unnecessary API calls
+	const [apiKey, setApiKey] = useState(''); // OpenAI API key
 
-	const apiKey = ''; // Replace with your OpenAI API key
 	const endpoint = 'https://api.openai.com/v1/images/generations'; // OpenAI Image Generation endpoint
+
+	// Fetch the API key from the REST API endpoint
+	useEffect(() => {
+		const fetchApiKey = async () => {
+			try {
+				const response = await axios.post(
+					`${AI_IMAGE_AdminConfig.rest_url}openai/api-key`,
+					{},
+					{
+						headers: {
+							'X-WP-Nonce': AI_IMAGE_AdminConfig.nonce,
+						},
+					}
+				);
+				if (response.data && response.data.api_key) {
+					setApiKey(response.data.api_key);
+				} else {
+					setError('Failed to fetch API key.');
+				}
+			} catch (err) {
+				setError('Error fetching API key.');
+			}
+		};
+
+		fetchApiKey();
+	}, []);
 
 	// Debounce the search input change
 	useEffect(() => {
@@ -26,7 +52,7 @@ const OpenAIImageGenerator = () => {
 
 	// Generate Image function
 	const generateImage = async () => {
-		if (!debouncedQuery) return; // If no query is entered, do nothing
+		if (!debouncedQuery || !apiKey) return; // If no query or API key is entered, do nothing
 
 		setLoading(true); // Start loading
 		setError(null); // Clear previous errors
@@ -57,10 +83,16 @@ const OpenAIImageGenerator = () => {
 		}
 	};
 
+	// Handle form submission
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		generateImage();
+	};
+
 	return (
 		<div>
 			{/* Search bar */}
-			<div className="ai-image-search mb-8">
+			<form className="ai-image-search mb-8" onSubmit={handleSubmit}>
 				<input
 					value={query}
 					onChange={(e) => setQuery(e.target.value)}
@@ -69,12 +101,11 @@ const OpenAIImageGenerator = () => {
 				/>
 				<button
 					type="submit"
-					onClick={generateImage}
 					disabled={loading}
 				>
 					{loading ? 'Generating...' : 'Generate Image'}
 				</button>
-			</div>
+			</form>
 
 			{/* Loading indicator */}
 			{loading ? (

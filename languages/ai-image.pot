@@ -8,7 +8,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"POT-Creation-Date: 2024-11-13T03:39:43.751Z\n"
+"POT-Creation-Date: 2024-11-21T05:56:43.003Z\n"
 "PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
 "Last-Translator: BdThemes <EMAIL>\n"
 "Language-Team: BdThemes <EMAIL>\n"
@@ -40,7 +40,7 @@ msgstr ""
 msgid "BdThemes"
 msgstr ""
 
-#: plugin.php:217
+#: plugin.php:220
 msgid "Image Generator ??"
 msgstr ""
 
@@ -65,6 +65,10 @@ msgid ""
 "Learn more about <a "
 "href=\"https://beta.openai.com/docs/developer-quickstart/your-api-keys\" "
 "target=\"_blank\">how to use OpenAI API</a>"
+msgstr ""
+
+#: admin/api.php:27
+msgid "Nonce verification failed"
 msgstr ""
 
 #: src/admin/components/includes/Settings.jsx:166
