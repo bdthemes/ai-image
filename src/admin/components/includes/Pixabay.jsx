@@ -1,18 +1,18 @@
-import React, { useState, useEffect, useCallback } from "react";
-import axios from "axios";
-import DownloadBtn from "./components/DownloadBtn";
-import ImportBtn from "./components/ImportBtn";
-import Author from "./components/Author";
-import Preview from "./components/Preview";
+import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
+import DownloadBtn from './components/DownloadBtn';
+import ImportBtn from './components/ImportBtn';
+import Author from './components/Author';
+import Preview from './components/Preview';
 
 const Pixabay = () => {
 	const [images, setImages] = useState([]);
-	const [query, setQuery] = useState("nature");
+	const [query, setQuery] = useState('nature');
 	const [page, setPage] = useState(1);
 	const [loading, setLoading] = useState(true); // Initial loading
 	const [scrollLoading, setScrollLoading] = useState(false); // Loading when scrolling bottom
 	const [debouncedQuery, setDebouncedQuery] = useState(query);
-	const api_pixabay = "27427772-5e3b7770787f4e0e591d5d2eb";
+	const api_pixabay = '27427772-5e3b7770787f4e0e591d5d2eb';
 
 	// Fetch images based on search query and page
 	const fetchImages = useCallback(async () => {
@@ -27,18 +27,22 @@ const Pixabay = () => {
 				params: {
 					key: api_pixabay,
 					q: debouncedQuery,
-					image_type: "photo",
+					image_type: 'photo',
 					page,
 					per_page: 12,
-					pretty: true
-				}
+					pretty: true,
+				},
 			});
 
 			if (response.data && response.data.hits) {
-				setImages((prevImages) => (page === 1 ? response.data.hits : [...prevImages, ...response.data.hits]));
+				setImages((prevImages) =>
+					page === 1
+						? response.data.hits
+						: [...prevImages, ...response.data.hits]
+				);
 			}
 		} catch (error) {
-			console.error("Error fetching images:", error);
+			console.error('Error fetching images:', error);
 		} finally {
 			setLoading(false); // Hide initial loading spinner
 			setScrollLoading(false); // Hide scroll loading spinner
@@ -82,8 +86,20 @@ const Pixabay = () => {
 					placeholder="Search images..."
 				/>
 				<button type="submit">
-					<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-						<path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"></path>
+					<svg
+						aria-hidden="true"
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						fill="none"
+						viewBox="0 0 24 24"
+					>
+						<path
+							stroke="currentColor"
+							strokeLinecap="round"
+							strokeWidth="2"
+							d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
+						></path>
 					</svg>
 				</button>
 			</div>
@@ -92,7 +108,7 @@ const Pixabay = () => {
 			{loading ? (
 				<p>Loading...</p>
 			) : (
-				<div className="grid grid-cols-3 md:grid-cols-4 gap-6">
+				<div className="aiImg-col-wrap">
 					{images.map((image) => (
 						<div key={image.id} className="card ai-img-item">
 							<div className="aiImg-image-wrap w-full h-full">
@@ -106,7 +122,10 @@ const Pixabay = () => {
 							<div className="aiImg-content-wrap">
 								<Author
 									url={`https://pixabay.com/users/${image.user}-${image.user_id}`}
-									avatar={image.userImageURL || "https://via.placeholder.com/130"}
+									avatar={
+										image.userImageURL ||
+										'https://via.placeholder.com/130'
+									}
 									name={image.user}
 								/>
 								<div className="aiImg-download-and-drop-wrap">
@@ -119,7 +138,8 @@ const Pixabay = () => {
 												width={24}
 												height={24}
 												fill="none"
-												viewBox="0 0 24 24">
+												viewBox="0 0 24 24"
+											>
 												<path
 													stroke="currentColor"
 													strokeLinecap="round"
@@ -130,9 +150,21 @@ const Pixabay = () => {
 											</svg>
 										</button>
 										<div className="download-button-content">
-											<DownloadBtn label="Large" type="large" url={image.largeImageURL} />
-											<DownloadBtn label="Medium" type="medium" url={image.webformatURL} />
-											<DownloadBtn label="Small" type="small" url={image.previewURL} />
+											<DownloadBtn
+												label="Large"
+												type="large"
+												url={image.largeImageURL}
+											/>
+											<DownloadBtn
+												label="Medium"
+												type="medium"
+												url={image.webformatURL}
+											/>
+											<DownloadBtn
+												label="Small"
+												type="small"
+												url={image.previewURL}
+											/>
 										</div>
 									</div>
 								</div>
@@ -144,9 +176,13 @@ const Pixabay = () => {
 
 			{/* Load More button */}
 			{!loading && (
-				<div className="text-center mt-8">
-					<button onClick={loadMoreImages} disabled={scrollLoading} className="load-more-btn">
-						{scrollLoading ? "Loading more images..." : "Load More"}
+				<div className="text-center mt-8 ">
+					<button
+						onClick={loadMoreImages}
+						disabled={scrollLoading}
+						className="load-more-btn text-white bg-gradient-to-br from-blue-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+					>
+						{scrollLoading ? 'Loading more images...' : 'Load More'}
 					</button>
 				</div>
 			)}

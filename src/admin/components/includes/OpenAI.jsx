@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import DownloadBtn from "./components/DownloadBtn";
-import ImportBtn from "./components/ImportBtn";
-import Author from "./components/Author";
-import Preview from "./components/Preview";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import DownloadBtn from './components/DownloadBtn';
+import ImportBtn from './components/ImportBtn';
+import Author from './components/Author';
+import Preview from './components/Preview';
 
 const OpenAIImageGenerator = () => {
-	const [query, setQuery] = useState(""); // User input query
+	const [query, setQuery] = useState(''); // User input query
 	const [generatedImages, setGeneratedImages] = useState([]); // Array of generated image URLs
 	const [loading, setLoading] = useState(false); // Loading state
 	const [error, setError] = useState(null); // Error state
 	const [debouncedQuery, setDebouncedQuery] = useState(query); // Debounced query to prevent unnecessary API calls
 
-	const apiKey = ""; // Replace with your OpenAI API key
-	const endpoint = "https://api.openai.com/v1/images/generations"; // OpenAI Image Generation endpoint
+	const apiKey = ''; // Replace with your OpenAI API key
+	const endpoint = 'https://api.openai.com/v1/images/generations'; // OpenAI Image Generation endpoint
 
 	// Debounce the search input change
 	useEffect(() => {
@@ -37,11 +37,11 @@ const OpenAIImageGenerator = () => {
 				{
 					prompt: debouncedQuery,
 					n: 2, // Number of images to generate (to show multiple sizes)
-					size: "512x512", // Medium size for preview
+					size: '512x512', // Medium size for preview
 				},
 				{
 					headers: {
-						"Content-Type": "application/json",
+						'Content-Type': 'application/json',
 						Authorization: `Bearer ${apiKey}`,
 					},
 				}
@@ -51,7 +51,7 @@ const OpenAIImageGenerator = () => {
 				setGeneratedImages(response.data.data); // Set the generated images
 			}
 		} catch (err) {
-			setError("Error generating image. Please try again."); // Set error message
+			setError('Error generating image. Please try again.'); // Set error message
 		} finally {
 			setLoading(false); // Stop loading
 		}
@@ -72,7 +72,7 @@ const OpenAIImageGenerator = () => {
 					onClick={generateImage}
 					disabled={loading}
 				>
-					{loading ? "Generating..." : "Generate Image"}
+					{loading ? 'Generating...' : 'Generate Image'}
 				</button>
 			</div>
 
@@ -80,7 +80,7 @@ const OpenAIImageGenerator = () => {
 			{loading ? (
 				<p>Loading...</p>
 			) : (
-				<div className="grid grid-cols-3 md:grid-cols-4 gap-6">
+				<div className="aiImg-col-wrap">
 					{/* Display generated images */}
 					{generatedImages.map((image, index) => (
 						<div key={index} className="card ai-img-item">
