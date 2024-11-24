@@ -4,7 +4,7 @@
  * Plugin Name: Instant Image Generator (One Click Image Uploads from Pixabay, Pexels and OpenAI)
  * Plugin URI: https://bdthemes.com
  * Description: Easily upload photos from Pixabay or Pexels directly to your website without ever leaving WordPress!
- * Version: 1.5.4
+ * Version: 1.5.5
  * Author: BdThemes
  * Author URI: https://bdthemes.com
  * License: GPLv3
@@ -12,7 +12,7 @@
  * Domain Path: /languages/
  */
 
-define( 'BDT_AI_IMAGE_VERSION', '1.5.4' );
+define( 'BDT_AI_IMAGE_VERSION', '1.5.5' );
 
 define( 'BDT_AI_IMAGE__FILE__', __FILE__ );
 define( 'BDT_AI_IMAGE_PATH', plugin_dir_path( BDT_AI_IMAGE__FILE__ ) );
