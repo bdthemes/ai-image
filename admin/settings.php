@@ -3,6 +3,8 @@ class BDTHEMES_OPENAI_ADMIN_SETTINGS_PAGE {
     public function __construct() {
         add_action('admin_init', [$this, 'admin_settings_page_init']);
         add_action('admin_menu', [$this, 'add_openai_menu_page']);
+
+        add_filter( 'plugin_action_links_' . plugin_basename( BDT_AI_IMAGE__FILE__ ), [$this, 'plugin_action_links'] );
     }
     public function add_openai_menu_page() {
         add_options_page('AI Image', esc_html__('AI Image', 'ai-image'), 'manage_options', 'bdthemes-ai-image-options', [$this, 'create_admin_page']);
@@ -42,6 +44,23 @@ class BDTHEMES_OPENAI_ADMIN_SETTINGS_PAGE {
             '<input type="text" name="bdthemes_openai_api_key" value="%s" class="large-text" placeholder="sk-..." />',
             isset($api_key) ? esc_attr($api_key) : ''
         );
+    }
+
+    /**
+	 * Plugin action links
+	 * @access public
+	 * @return array
+	 */
+
+	 public function plugin_action_links( $plugin_meta ) {
+
+        $row_meta = [
+            'settings' => '<a href="'.admin_url( 'options-general.php?page=bdthemes-ai-image-options' ) .'" aria-label="' . esc_attr(__('Go to settings', 'ai-image')) . '" >' . __('Settings', 'ai-image') . '</b></a>',
+        ];
+
+        $plugin_meta = array_merge($plugin_meta, $row_meta);
+
+        return $plugin_meta;
     }
 }
 

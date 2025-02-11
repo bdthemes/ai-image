@@ -1,7 +1,7 @@
 === Instant Image Generator (One Click Image Uploads from Pixabay, Pexels and OpenAI) ===
-Contributors: bdthemes, selimrana, abutalib, bdkoder
+Contributors: bdthemes, selimrana, abutalib, bdkoder, mohammaadfarid
 Tags: instantimage, freeimage, openai, image, bdthemes
-Stable tag: 1.5.5
+Stable tag: 1.5.6
 Requires PHP: 7.0.0
 Requires at least: 5.0.0
 Tested up to: 6.7.1
@@ -25,6 +25,7 @@ https://youtu.be/WONhNWVXqvA
 
 We appreciate your support of our best-seller products
 
+* **[ZoloBlocks](https://wordpress.org/plugins/zoloblocks/)** 🆕☀️ - Advanced Gutenberg block plugin for powerful web design.
 
 * **[Element Pack](https://wordpress.org/plugins/bdthemes-element-pack-lite/)** - Element Pack Lite Build a responsive website from scratch with an all-rounder package for Elementor
 
@@ -42,6 +43,11 @@ We appreciate your support of our best-seller products
 Installation is fairly straight forward. Install it from the WordPress plugin repository.
 
 == Changelog ==
+
+= 1.5.6 [11th February 2025] =
+
+* Added: Plugin page action menu settings added
+* Updated: System improved
 
 = 1.5.5 [24th November 2024] =
 
