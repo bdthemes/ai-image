@@ -48,7 +48,7 @@ final class Plugin {
 		// 	return;
 		// }
 		$direction_suffix = is_rtl() ? '.rtl' : '';
-		wp_register_style( 'ai-image', BDT_AI_IMAGE_URL . 'build/admin/index.css', array(), BDT_AI_IMAGE_VERSION );
+		wp_register_style( 'ai-image', BDT_AI_IMAGE_URL . 'build/index.css', array(), BDT_AI_IMAGE_VERSION );
 		wp_enqueue_style( 'ai-image' );
 	}
 
@@ -62,7 +62,7 @@ final class Plugin {
 		// if ( 'toplevel_page_ai-image' !== $hook_suffix ) {
 		// 	return;
 		// }
-		$asset_file = plugin_dir_path( __FILE__ ) . 'build/admin/index.asset.php';
+		$asset_file = plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
 
 		if ( ! file_exists( $asset_file ) ) {
 			return;
@@ -70,7 +70,7 @@ final class Plugin {
 
 		$asset = include $asset_file;
 
-		wp_register_script( 'ai-image', BDT_AI_IMAGE_URL . 'build/admin/index.js', $asset['dependencies'], $asset['version'], true );
+		wp_register_script( 'ai-image', BDT_AI_IMAGE_URL . 'build/index.js', $asset['dependencies'], $asset['version'], true );
 
 		wp_enqueue_script( 'ai-image' );
 
@@ -206,7 +206,7 @@ final class Plugin {
 		add_media_page( 'Image Generator', 'Image Generator', 'read', 'bdt-ai-media-tab', function () {
 			?>
 			<div class="wrap ai-image-wrap">
-				<h2 class="ai-image-title">Image Generator</h2>
+				<h2 class="ai-image-title"><?php __( 'Image Generator', 'ai-image' ); ?></h2>
 				<div id="ai-image-generator"></div>
 			</div>
 			<?php

@@ -124,8 +124,7 @@ const Pixels = () => {
 								<Author
 									url={image.photographer_url}
 									avatar={
-										image.photographer_avatar ||
-										'https://via.placeholder.com/130'
+										image?.photographer_avatar
 									}
 									name={image.photographer}
 								/>

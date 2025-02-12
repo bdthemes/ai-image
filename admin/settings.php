@@ -1,4 +1,10 @@
 <?php
+namespace BDTHEMES_AI_IMAGE;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	die;
+}
+
 class BDTHEMES_OPENAI_ADMIN_SETTINGS_PAGE {
     public function __construct() {
         add_action('admin_init', [$this, 'admin_settings_page_init']);
@@ -32,14 +38,14 @@ class BDTHEMES_OPENAI_ADMIN_SETTINGS_PAGE {
     public function openai_settings_section() {
     ?>
         <p>
-            <?php 
+            <?php
             printf(
                 esc_html__('Please enter your Openai API key. You can get your API key from %s .', 'ai-image'),
                 '<a href="https://beta.openai.com/account/api-keys" target="_blank">here</a>'
             );
             ?>
             <br>
-            <?php 
+            <?php
             printf(
                 esc_html__('Learn more about %s', 'ai-image'),
                 '<a href="https://beta.openai.com/docs/developer-quickstart/your-api-keys" target="_blank">how to use OpenAI API</a>'

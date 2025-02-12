@@ -1,8 +1,35 @@
 <?php
+
+namespace BDTHEMES_AI_IMAGE;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	die;
+}
+
+use WP_REST_Controller;
+use WP_REST_Request;
+use WP_REST_Response;
+use WP_Error;
+
 /*
  * OpenAI Rest Controller
  */
 class BDTHEMES_OPENAI_REST_CONTROLLER extends WP_REST_Controller {
+
+	/**
+	 * Namespace
+	 *
+	 * @var string
+	 */
+	protected $namespace;
+
+	/**
+	 * Rest base
+	 *
+	 * @var string
+	 */
+	protected $rest_base;
+
 	public function __construct() {
 		$this->namespace = 'bdthemes/v1';
 		$this->rest_base = 'openai';

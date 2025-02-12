@@ -8,73 +8,6 @@
 		padding: 0 !important;
 		font-weight: 600 !important;
 	}
-
-	.ai-image-tabs-search-wrap {
-		display: flex;
-		align-items: flex-start;
-		flex-direction: column-reverse;
-		justify-content: space-between;
-		flex-wrap: wrap;
-		gap: 10px;
-	}
-
-	.ai-image-tabs__nav {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		// gap: 10px;
-	}
-
-	.ai-image-tabs__nav-item {
-		padding: 15px 20px;
-		cursor: pointer;
-		background-color: #e3e5ee;
-		margin: 0;
-		font-weight: 600;
-		font-size: 16px;
-		display: flex;
-		align-items: center;
-		flex-direction: row-reverse;
-		gap: 10px;
-
-		&.active {
-			color: #000;
-			background-color: #ffffff;
-		}
-
-		&:first-child {
-			border-top-left-radius: 6px;
-		}
-
-		&:last-child {
-			border-top-right-radius: 6px;
-		}
-
-		span {
-			display: none;
-		}
-
-		svg {
-			width: 28px;
-			height: 28px;
-			display: block;
-		}
-	}
-
-	.ai-image-tabs__content-item h3 {
-		margin: 0;
-		font-size: 20px;
-	}
-
-	.ai-image-tabs__content-item {
-		display: none;
-	}
-
-	.ai-image-tabs__content-item.active {
-		display: block;
-	}
-
 	.ai-image-search {
 		position: relative;
 		width: 100%;
@@ -112,25 +45,6 @@
 				color: #70707a;
 			}
 		}
-	}
-
-	.ai-image-tabs__content {
-		background-color: #fff;
-		padding: 20px;
-		border-top-right-radius: 6px;
-		border-bottom-left-radius: 6px;
-		border-bottom-right-radius: 6px;
-	}
-
-	.aiImg-loaded-images img {
-		width: 100%;
-		height: auto;
-		vertical-align: middle;
-	}
-
-	.aiImg-loaded-images {
-		grid-gap: 30px;
-		columns: 1;
 	}
 
 	.card {
@@ -214,15 +128,6 @@
 		color: #fff;
 		font-weight: 500;
 		margin-top: 12px;
-
-		.aiImg-author-img {
-			width: 30px !important;
-			height: 30px !important;
-			border-radius: 50%;
-			vertical-align: middle;
-			border: 2px solid #fff;
-			padding: 3px;
-		}
 
 		&:hover {
 			color: #fff;
@@ -405,27 +310,9 @@
 	}
 
 	@media (min-width: 768px) {
-		.aiImg-loaded-images {
-			columns: 2;
-		}
-
-		.ai-image-tabs__nav-item {
-			padding: 16px 22px;
-		}
-
-		.ai-image-tabs__content {
-			padding: 30px;
-		}
-
 		.ai-image-tabs-search-wrap {
 			flex-direction: row;
 			align-items: center;
-		}
-
-		.ai-image-tabs__nav-item {
-			span {
-				display: block;
-			}
 		}
 	}
 

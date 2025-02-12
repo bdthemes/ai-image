@@ -12,6 +12,10 @@
  * Domain Path: /languages/
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die;
+}
+
 define( 'BDT_AI_IMAGE_VERSION', '1.5.6' );
 
 define( 'BDT_AI_IMAGE__FILE__', __FILE__ );
