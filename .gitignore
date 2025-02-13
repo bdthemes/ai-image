@@ -8,7 +8,7 @@ package-lock.json
 *sync.ffs_db
 .DS_Store
 *.DS_Store
-spin-wheel
 *.DS_Store
 **/.DS_Store
 build
+assets

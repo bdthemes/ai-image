@@ -123,8 +123,7 @@ const Pixabay = () => {
 								<Author
 									url={`https://pixabay.com/users/${image.user}-${image.user_id}`}
 									avatar={
-										image.userImageURL ||
-										'https://via.placeholder.com/130'
+										image.userImageURL
 									}
 									name={image.user}
 								/>

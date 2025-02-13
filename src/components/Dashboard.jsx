@@ -38,12 +38,12 @@ const switchAndReload = function (id) {
 
 	// refresh
 
-	if (wp.media.frame.content.get() !== null) {
-		wp.media.frame.content.get().collection.props.set({ ignore: (+ new Date()) });
-		wp.media.frame.content.get().options.selection.reset();
-	} else {
-		wp.media.frame.library.props.set({ ignore: (+ new Date()) });
-	}
+	// if (wp.media.frame.content.get() !== null) {
+	// 	wp.media.frame.content.get().collection.props.set({ ignore: (+ new Date()) });
+	// 	wp.media.frame.content.get().options.selection.reset();
+	// } else {
+	// 	wp.media.frame.library.props.set({ ignore: (+ new Date()) });
+	// }
 
 };
 

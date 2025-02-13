@@ -65,3 +65,5 @@ final class BDTHEMES_AI_IMAGE {
  */
 
 BDTHEMES_AI_IMAGE::init();
+
+
