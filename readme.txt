@@ -1,10 +1,10 @@
 === Instant Image Generator (One Click Image Uploads from Pixabay, Pexels and OpenAI) ===
-Contributors: bdthemes, selimrana, abutalib, bdkoder, mohammaadfarid
-Tags: instantimage, freeimage, openai, image, bdthemes
-Stable tag: 1.5.6
+Contributors: bdthemes, selimrana, abutalib, mohammaadfarid
+Tags: ai, image generator, openai, image, ai image
+Stable tag: 1.5.7
 Requires PHP: 7.0.0
 Requires at least: 5.0.0
-Tested up to: 6.7.1
+Tested up to: 6.8
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -44,15 +44,12 @@ Installation is fairly straight forward. Install it from the WordPress plugin re
 
 == Changelog ==
 
-= 1.5.X [XXth April 2025] =
+= 1.5.7 [22th April 2025] =
 
+* Added: Made Compatible with WordPress Version 6.8
+* Added: Plugin page action menu settings added
 * Fixed: Pixels avatar issue fixed
 * Improved: Pixels image preview and upload by default original size
-* Updated: Made Compatible with WordPress Version 6.8
-
-= 1.5.6 [11th February 2025] =
-
-* Added: Plugin page action menu settings added
 * Updated: System improved
 
 = 1.5.5 [24th November 2024] =
