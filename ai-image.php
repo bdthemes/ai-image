@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Plugin Name: Instant Image Generator (One Click Image Uploads from Pixabay, Pexels and OpenAI)
+ * Plugin Name: Instant Image Generator
  * Plugin URI: https://bdthemes.com
- * Description: Easily upload photos from Pixabay or Pexels directly to your website without ever leaving WordPress!
+ * Description: One-Click Image Uploads from Pixabay, Pexels and OpenAI. Easily upload images directly to your website without leaving WordPress.
  * Version: 1.5.6
  * Author: BdThemes
  * Author URI: https://bdthemes.com

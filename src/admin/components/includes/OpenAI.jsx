@@ -34,7 +34,7 @@ const OpenAIImageGenerator = () => {
 					setError('Failed to fetch API key.');
 				}
 			} catch (err) {
-				setError('Error fetching API key.');
+				setError('Error fetching API key. Go to dashboard Settings→AI Image to configure your API key.');
 			}
 		};
 
