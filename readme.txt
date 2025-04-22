@@ -44,6 +44,12 @@ Installation is fairly straight forward. Install it from the WordPress plugin re
 
 == Changelog ==
 
+= 1.5.X [XXth April 2025] =
+
+* Fixed: Pixels avatar issue fixed
+* Improved: Pixels image preview and upload by default original size
+* Updated: Made Compatible with WordPress Version 6.8
+
 = 1.5.6 [11th February 2025] =
 
 * Added: Plugin page action menu settings added

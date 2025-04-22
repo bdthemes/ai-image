@@ -113,7 +113,7 @@ const Pixels = () => {
 						<div key={image.id} className="card ai-img-item">
 							<div className="aiImg-image-wrap w-full h-full">
 								<img
-									src={image.src.medium}
+									src={image.src.original}
 									className="card-img-top w-full h-full object-cover"
 									alt={image.alt}
 									loading="lazy" // Lazy load the image
@@ -125,12 +125,12 @@ const Pixels = () => {
 									url={image.photographer_url}
 									avatar={
 										image.photographer_avatar ||
-										'https://via.placeholder.com/130'
+										`https://ui-avatars.com/api/?name=${encodeURIComponent(image.photographer)}&background=random&size=64`
 									}
 									name={image.photographer}
 								/>
 								<div className="aiImg-download-and-drop-wrap">
-									<ImportBtn url={image.src.medium} />
+									<ImportBtn url={image.src.original} />
 									<div className="download-button-dropdown">
 										<button className="dropbtn aiImg-drop-btn ai-image-drop-btn">
 											<svg
