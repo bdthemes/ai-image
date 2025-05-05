@@ -1,10 +1,10 @@
 === Instant Image Generator (One Click Image Uploads from Pixabay, Pexels and OpenAI) ===
 Contributors: bdthemes, selimrana, abutalib, mohammaadfarid
 Tags: ai, image generator, openai, image, ai image
-Stable tag: 1.5.7
+Stable tag: 1.5.8
 Requires PHP: 7.0.0
 Requires at least: 5.0.0
-Tested up to: 6.8
+Tested up to: 6.8.1
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -17,8 +17,6 @@ The AI Image Generator Plugin for WordPress is a powerful tool that harnesses th
 ###USEFUL LINKS 👇###
 **[Documentation](https://bdthemes.com/knowledge-base/ai-image/ai-image-generator/)** | **[Video Tutorial](https://youtu.be/WONhNWVXqvA)** | **[Need Support?](https://bdthemes.com/support/)**
 
-
-https://youtu.be/WONhNWVXqvA
 
 
 == Check out our other Addons 👑 ==
@@ -43,6 +41,11 @@ We appreciate your support of our best-seller products
 Installation is fairly straight forward. Install it from the WordPress plugin repository.
 
 == Changelog ==
+
+= 1.5.8 [5th May 2025] =
+
+* Fixed: OpenAI avatar issue fixed
+* Updated: Modal design improved
 
 = 1.5.7 [22th April 2025] =
 
