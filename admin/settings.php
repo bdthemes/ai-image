@@ -35,14 +35,14 @@ class BDTHEMES_OPENAI_ADMIN_SETTINGS_PAGE {
             <?php 
             printf(
                 esc_html__('Please enter your Openai API key. You can get your API key from %s .', 'ai-image'),
-                '<a href="https://beta.openai.com/account/api-keys" target="_blank">here</a>'
+                '<a href="https://platform.openai.com/api-keys" target="_blank">here</a>'
             );
             ?>
             <br>
             <?php 
             printf(
                 esc_html__('Learn more about %s', 'ai-image'),
-                '<a href="https://beta.openai.com/docs/developer-quickstart/your-api-keys" target="_blank">how to use OpenAI API</a>'
+                '<a href="https://platform.openai.com/" target="_blank">how to use OpenAI API</a>'
             );
             ?>
         </p>
@@ -65,7 +65,7 @@ class BDTHEMES_OPENAI_ADMIN_SETTINGS_PAGE {
 	 public function plugin_action_links( $plugin_meta ) {
 
         $row_meta = [
-            'settings' => '<a href="'.admin_url( 'options-general.php?page=bdthemes-ai-image-options' ) .'" aria-label="' . esc_attr(__('Go to settings', 'ai-image')) . '" >' . __('Settings', 'ai-image') . '</b></a>',
+            'settings' => '<a href="'.admin_url( 'upload.php?page=bdt-ai-media-tab' ) .'" aria-label="' . esc_attr(__('Go to Image Generator', 'ai-image')) . '" >' . __('Image Generator', 'ai-image') . '</b></a>',
         ];
 
         $plugin_meta = array_merge($plugin_meta, $row_meta);

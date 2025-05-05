@@ -92,31 +92,62 @@ const Dashboard = () => {
 
 			const data = await response.json();  // Parse the JSON response
 
-
-			/**
-			 * ai-img-copy-url click event
-			 */
-			document.addEventListener('click', (event) => {
-				if (event.target.classList.contains('ai-img-copy-url')) {
-					const input = event.target.nextElementSibling;
-					input.select();
-					document.execCommand('copy');
-					Swal.fire({
-						icon: 'success',
-						title: 'Image URL Copied',
-						text: 'The image URL has been copied to your clipboard.',
-					});
-				}
-			});
-
-
 			if (response.ok && data.success) {
 				Swal.fire({
 					icon: 'success',
 					title: 'Image Uploaded Successfully',
-					// text: `Attachment ID: ${data.data.attach_id}`
-					//copy url button with icon - data.data.attach_url
-					html: `Copy URL: <div style="display: grid; justify-content: center;  gap: 8px;"><a href="javascript:void(0);" class="ai-img-copy-url">📋</a><input type="text" value="${data.data.attach_url}" readonly></div>`,
+					html: `
+						<div style="text-align: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+							<p style="color: #64748b; font-size: 15px; margin-bottom: 16px; font-weight: 500;">Your image is now in the media library</p>
+							<div style="display: flex; max-width: 100%; margin: 0 auto; border-radius: 12px; overflow: hidden; transition: all 0.2s ease;">
+								<input type="text" id="ai-copy-url-input" value="${data.data.attach_url}" readonly style="flex: 1; padding: 12px 16px; border: none; outline: none; font-size: 14px; background: #f8fafc; color: #334155;" />
+								<a href="javascript:void(0);" class="ai-img-copy-url" data-clipboard-text="${data.data.attach_url}" style="display: flex; align-items: center; justify-content: center; padding: 0 16px; background: linear-gradient(135deg, #3b82f6, #6366f1); color: white; transition: all 0.2s ease;">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="min-width: 20px;">
+										<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+										<rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+									</svg>
+								</a>
+							</div>
+							<p style="color: #94a3b8; font-size: 12px; margin-top: 12px;">Click to copy the URL</p>
+						</div>
+					`,
+					confirmButtonText: 'Done',
+					didOpen: () => {
+						const copyBtn = document.querySelector('.ai-img-copy-url');
+						if (copyBtn) {
+							copyBtn.addEventListener('click', function() {
+								const input = document.getElementById('ai-copy-url-input');
+								input.select();
+								document.execCommand('copy');
+								
+								// Change background color
+								this.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+								
+								// Store original icon and replace with checkmark icon
+								const originalIcon = this.innerHTML;
+								this.innerHTML = `
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="min-width: 20px;">
+										<polyline points="20 6 9 17 4 12"></polyline>
+									</svg>
+								`;
+								
+								// Reset after delay
+								setTimeout(() => {
+									this.style.background = 'linear-gradient(135deg, #3b82f6, #6366f1)';
+									this.innerHTML = originalIcon;
+								}, 1500);
+								
+								Swal.showToast({
+									icon: 'success',
+									title: 'URL copied to clipboard!',
+									position: 'top-end',
+									showConfirmButton: false,
+									timer: 1500,
+									toast: true
+								});
+							});
+						}
+					}
 				});
 
 				setTimeout(() => {
@@ -152,6 +183,16 @@ const Dashboard = () => {
 		};
 
 		document.addEventListener('click', handleGlobalClick);
+
+		if (!Swal.showToast) {
+			Swal.showToast = Swal.mixin({
+				toast: true,
+				position: 'top-end',
+				showConfirmButton: false,
+				timer: 3000,
+				timerProgressBar: true
+			});
+		}
 
 		return () => {
 			document.removeEventListener('click', handleGlobalClick);
