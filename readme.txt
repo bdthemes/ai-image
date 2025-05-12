@@ -1,7 +1,7 @@
 === Instant Image Generator (One Click Image Uploads from Pixabay, Pexels and OpenAI) ===
 Contributors: bdthemes, selimrana, abutalib, mohammaadfarid
 Tags: ai, image generator, openai, image, ai image
-Stable tag: 1.5.8
+Stable tag: 1.5.9
 Requires PHP: 7.0.0
 Requires at least: 5.0.0
 Tested up to: 6.8.1
@@ -15,9 +15,9 @@ Easily upload photos from Pixabay or Pexels directly to your website without eve
 The AI Image Generator Plugin for WordPress is a powerful tool that harnesses the capabilities of artificial intelligence to generate stunning and realistic images directly within your WordPress website. This innovative plugin utilizes advanced machine learning algorithms to create high-quality images based on user-defined parameters and preferences.
 
 ###USEFUL LINKS 👇###
-**[Documentation](https://bdthemes.com/knowledge-base/ai-image/ai-image-generator/)** | **[Video Tutorial](https://youtu.be/WONhNWVXqvA)** | **[Need Support?](https://bdthemes.com/support/)**
+**[Documentation](https://bdthemes.com/knowledge-base/ai-image/ai-image-generator/)** | **[Need Support?](https://bdthemes.com/support/)**
 
-
+https://youtu.be/cGmPFU_ju4s
 
 == Check out our other Addons 👑 ==
 
@@ -37,10 +37,33 @@ We appreciate your support of our best-seller products
 
 * **[Pixel Gallery](https://wordpress.org/plugins/pixel-gallery/)** - Pixel Gallery is the first Elementor-based WordPress gallery addon that provides the easiest image gallery-making experience.
 
+
 == Installation ==
-Installation is fairly straight forward. Install it from the WordPress plugin repository.
+
+This section describes how to install the plugin and get it working.
+
+e.g.
+
+1. Upload `ai-image` folder to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+
+https://youtu.be/cGmPFU_ju4s
+
+== Screenshots ==
+
+1. Instant Image Generator  Intro
+2. Image Generator Dashboard Setting
+3. Pixels Image Generator
+4. Pixabay Image Generator
+5. OpenAI Image Generator
+6. Our Others Popular Plugins
+
 
 == Changelog ==
+
+= 1.5.9 [11th May 2025] =
+
+* Updated: System improved
 
 = 1.5.8 [5th May 2025] =
 
